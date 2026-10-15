@@ -289,18 +289,18 @@ Estas são capturas reais da instalação de desenvolvimento. Elas mostram execu
 
 ### Curva de um treinamento concluído
 
-![Treinamento concluído com curva de loss e consumo de VRAM](docs/imagens/curva-treinamento.png)
+![Treinamento concluído com curva de loss e consumo de VRAM](docs/imagens/curva-treinamento.jpg)
 
 A captura mostra a continuação para ferramentas. A loss lateral é a última registrada, enquanto `training_summary.json` contém a média do treino. Os 12/12 são a validação sintética, não os 500 testes canônicos.
 
 ### Avaliação com e sem ferramentas
 
-![Comparação nos 500 testes: 75% sem ferramentas e 36,2% com ferramentas](docs/imagens/comparacao-ferramentas.png)
+![Comparação nos 500 testes: 75% sem ferramentas e 36,2% com ferramentas](docs/imagens/comparacao-ferramentas.jpg)
 
 Os valores são os mesmos dos [arquivos publicados e da análise](resultados/ANALISE.md). Fórmula aceita pelo Excel e correspondência ao gabarito são medidas distintas.
 
 ### Planilha em janela centralizada
 
-![Janela centralizada com grade editável e campo para pedir alterações à IA](docs/imagens/planilha-centralizada.png)
+![Janela centralizada com grade editável e campo para pedir alterações à IA](docs/imagens/planilha-centralizada.jpg)
 
 A planilha desta captura contém somente dados sintéticos de verificação. A janela mantém rolagem e pode ser redimensionada no desktop.
