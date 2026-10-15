@@ -1,0 +1,7 @@
+# Complemento ao ambiente CUDA existente. Instalar com --no-deps.
+# Nao use este arquivo para reinstalar ou substituir torch.
+peft==0.21.0
+openpyxl==3.1.5
+et-xmlfile==2.0.0
+# COM para calcular planilhas no Microsoft Excel instalado no Windows.
+pywin32==312; sys_platform == "win32"

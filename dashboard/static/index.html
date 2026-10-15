@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <!-- CHAT DIRECTION: conversation first. TASK: write an Excel formula prompt with local spreadsheet context.
+       FIRST VIEWPORT: compact navigation rail, searchable history, quiet model header, spacious thread and anchored composer.
+       SIGNATURE: preview the exact extracted context beside the draft before sending.
+       CONSTRAINTS: text-only Qwen, real local GPU output, no invented metrics, keyboard access and narrow-screen history drawer.
+       FINISH: desktop and phone screenshots, real XLSX conversation, persistent-session tests and independent review. -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formula Lab · Qwen</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/chat.css">
+  <link rel="stylesheet" href="/vendor/tabulator.min.css">
+  <link rel="stylesheet" href="/workbook.css">
+  <script src="/app.js" defer></script>
+  <script src="/chat_render.js" defer></script>
+  <script src="/vendor/tabulator.min.js" defer></script>
+  <script src="/workbook.js" defer></script>
+  <script src="/chat.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#workspace">Pular para o experimento</a>
+  <aside class="sidebar">
+    <a class="brand" href="#workspace" aria-label="Formula Lab · experimento"><span class="brand-mark" aria-hidden="true">ƒ</span><span>Formula<span class="brand-light"> Lab</span></span></a>
+    <nav aria-label="Navegação principal">
+      <a href="#workspace" class="nav-tab active" data-tab="workspace">
+        <svg class="nav-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2" /><path d="M6.453 15h11.094" /><path d="M8.5 2h7" /></svg>
+        <span>Experimento</span>
+      </a>
+      <a href="#history" class="nav-tab" data-tab="history">
+        <svg class="nav-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /><path d="M12 7v5l4 2" /></svg>
+        <span>Histórico</span>
+      </a>
+      <a href="#comparison" class="nav-tab" data-tab="comparison">
+        <svg class="nav-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3 4 7l4 4" /><path d="M4 7h16" /><path d="m16 21 4-4-4-4" /><path d="M20 17H4" /></svg>
+        <span>Comparação</span>
+      </a>
+      <a href="#chat" class="nav-tab" data-tab="chat">
+        <svg class="nav-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" /></svg>
+        <span>Chat</span>
+      </a>
+    </nav>
+    <div class="sidebar-model"><span class="local-indicator">Ambiente local</span><strong>Qwen3 · 4B</strong><span>Instruct 2507 / NF4</span><div id="environment">Conectando ao Python…</div></div>
+  </aside>
+
+  <main id="workspace">
+    <div id="view-workspace" class="tab-view active">
+      <header class="page-header"><div><h1>Experimento</h1><p>Treinamento QLoRA e avaliação de fórmulas.</p></div><span class="connection" id="connection" role="status">Conectando…</span></header>
+      <div id="notice" class="notice" role="alert" hidden></div>
+
+      <section class="baseline-strip" aria-label="Ponto de partida">
+        <div class="baseline-title"><div><span>Ponto de partida</span><strong>Qwen original</strong></div></div>
+        <div><strong id="baseline-accuracy">—</strong><span>correspondência normalizada</span></div>
+        <div><strong id="baseline-count">—</strong><span>testes congelados</span></div>
+        <button class="text-button" id="view-baseline">Ver respostas <svg class="icon-inline" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg></button>
+      </section>
+
+      <div class="workspace-grid">
+        <section class="panel configuration" aria-labelledby="config-title">
+          <div class="section-heading"><h2 id="config-title">Configurar treinamento</h2><span class="quiet-tag">QLoRA</span></div>
+          <p class="section-intro">O modelo base é preservado. O aprendizado fica em um adaptador separado.</p>
+          <div class="configuration-layout">
+          <form id="training-form">
+            <label class="training-source">Ponto de partida<select id="train-adapter-select"><option value="">Modelo base · novo adaptador</option></select><small id="train-adapter-hint">Começa do Qwen original e salva um adaptador novo.</small></label>
+            <fieldset><legend>Dados & duração</legend><div class="field-grid">
+              <label>Exemplos de treino<input name="train_samples" type="number" min="1" max="52203" step="1" required value="5000"><small>Disponíveis: 52.203</small></label>
+              <label>Exemplos de validação<input name="validation_samples" type="number" min="1" max="5083" step="1" required value="500"><small>Split separado do treino</small></label>
+              <label>Épocas<input name="epochs" type="number" min="1" max="10" step="1" required value="1"><small>Passagens pelos exemplos</small></label>
+              <label>Taxa de aprendizado<input name="learning_rate" type="number" min="0.000001" max="0.001" step="any" required value="0.0001"><small>Learning rate inicial</small></label>
+            </div></fieldset>
+            <label class="checkbox-label"><input name="exclude_suspect" type="checkbox" checked><span>Filtrar funções suspeitas<small>Exclui padrões como SUMMARIZE e SUMX do treino e validação. Não certifica os demais gabaritos.</small></span></label>
+            <label class="checkbox-label"><input name="exclude_seen" type="checkbox" checked><span>Usar apenas exemplos novos ao continuar<small>Exclui IDs de treino do adaptador escolhido e de todas as suas versões de origem. A validação pode se repetir.</small></span></label>
+            <details class="advanced"><summary>Ajustes avançados <span>GPU, LoRA e seleção</span></summary><div class="field-grid">
+              <label>Batch por dispositivo<input name="batch_size" type="number" min="1" max="4" step="1" required value="1"></label>
+              <label>Fração máxima da VRAM<input name="gpu_memory_fraction" type="number" min="0.5" max="0.95" step="0.01" required value="0.85"><small>Limite do alocador PyTorch no treino e nos 500 testes.</small></label>
+              <label>Batch dos 500 testes<input name="eval_batch_size" type="number" min="1" max="8" step="1" required value="1"><small>Independente do batch de treino; 1 reduz os picos de memória.</small></label>
+              <label>Acumulação de gradiente<input name="gradient_accumulation" type="number" min="1" max="128" step="1" required value="16"></label>
+              <label>Limite de tokens<input name="max_length" type="number" min="128" max="4096" step="1" required value="1024"><small>Contexto + resposta, sem corte</small></label>
+              <label>Seed<input name="seed" type="number" min="0" max="2147483647" step="1" required value="42"><small>Seleção reproduzível</small></label>
+              <label>Rank LoRA<input name="lora_r" type="number" min="4" max="64" step="1" required value="8"></label>
+              <label>Alpha LoRA<input name="lora_alpha" type="number" min="4" max="128" step="1" required value="16"></label>
+              <label>Registrar loss a cada<input name="logging_steps" type="number" min="1" max="100" step="1" required value="5"><small>Passos do otimizador</small></label>
+            </div><p class="helper">Valores iniciais conservadores para 8 GB de VRAM. Contextos maiores e batches maiores consomem mais memória.</p></details>
+            <div class="config-summary"><span>Batch efetivo <strong id="effective-batch">16</strong></span><span>Teste reservado <strong>500</strong></span></div>
+            <div class="form-actions"><button type="button" class="secondary" id="prepare" data-start>Verificar dados</button><button type="submit" class="primary" data-start><svg class="btn-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z" /></svg> Iniciar treino</button></div>
+            <p class="helper">A verificação monta a seleção e confere os tokens sem carregar o modelo na GPU. O treino repete essa verificação.</p>
+            <div class="form-actions"><button type="button" class="secondary" id="decensor" data-start>Extrair adaptador de recusa</button></div>
+            <p class="helper">Mede a direção de recusa do Qwen e grava um LoRA rank 1 por cima do modelo base. Não lê o dataset de fórmulas e não altera o teste congelado. No chat, ele pode ser somado a um adaptador de fórmulas.</p>
+          </form>
+          <aside class="configuration-note" aria-label="Seleção de dados">
+            <h3>Seleção de dados</h3>
+            <p>Treino e validação usam splits separados. Os 500 testes ficam reservados para a avaliação.</p>
+            <p>Confira quantidades, exclusões e limites de tokens antes de iniciar o treino.</p>
+          </aside>
+          </div>
+        </section>
+
+        <section class="panel monitor" aria-labelledby="monitor-title">
+          <div class="section-heading"><h2 id="monitor-title">Acompanhar execução</h2><span id="run-status" class="status">Aguardando</span></div>
+          <div class="run-heading"><div><strong id="run-phase">Sem execução selecionada</strong><p id="run-id">Inicie uma operação ou abra uma execução do histórico.</p></div><button id="cancel" class="danger-text" hidden>Interromper</button></div>
+          <ol id="phase-track" class="phase-track" aria-label="Etapas da execução" hidden></ol>
+          <progress id="progress" max="100" value="0" aria-label="Progresso da fase atual"></progress>
+          <div class="progress-caption"><span id="step-label">Nenhuma execução selecionada</span><span id="eta">—</span></div>
+          <p id="phase-detail" class="phase-detail" role="status">O progresso será mostrado separadamente para cada etapa.</p>
+          <div class="monitor-chart-layout">
+          <div class="learning-curve">
+          <div class="chart-heading"><h3>Curva de aprendizado</h3><div class="legend"><span>━ Treino</span><span>┄ Validação</span></div></div>
+          <div class="chart-wrap"><svg id="loss-chart" viewBox="0 0 680 220" role="img" aria-label="Loss por passo do otimizador"></svg><p id="chart-empty">A curva aparece quando o treino registrar a primeira loss.<span>Menor loss indica melhor ajuste aos gabaritos; a avaliação final mede os acertos.</span></p></div>
+          </div>
+          <dl class="live-metrics"><div><dt>Loss de treino</dt><dd id="train-loss">—</dd></div><div><dt>Loss de validação</dt><dd id="eval-loss">—</dd></div><div><dt>Tempo decorrido</dt><dd id="elapsed">—</dd></div><div><dt>VRAM alocada</dt><dd id="vram">—</dd></div></dl>
+          </div>
+          <div class="telemetry"><span>Época <strong id="epoch">—</strong></span><span>Learning rate <strong id="learning-rate">—</strong></span><span>Gradiente <strong id="grad-norm">—</strong></span></div>
+          <div id="selection" class="selection-summary" hidden></div>
+          <div class="log-heading"><h3>Log da execução</h3><label><input type="checkbox" id="follow-log" checked> Acompanhar final</label></div>
+          <pre id="log" tabindex="0" aria-label="Log da execução">Os logs do Python aparecerão aqui.
+Cada experimento mantém uma cópia em disco.</pre>
+          <div class="monitor-footer"><div id="artifacts" class="artifact-links"></div><button id="force-stop" class="danger-text" hidden>Forçar encerramento</button></div>
+        </section>
+      </div>
+
+      <section class="panel history" id="history" aria-labelledby="history-title"><div class="section-heading"><div><h2 id="history-title">Histórico de experimentos</h2><p class="section-intro">Parâmetros, resultados e arquivos de cada execução.</p></div><span id="history-count" class="quiet-tag">0 execuções</span></div><div class="table-scroll"><table><thead><tr><th>Execução</th><th>Operação</th><th>Configuração</th><th>Estado</th><th>Resultado</th><th><span class="sr-only">Ações</span></th></tr></thead><tbody id="history-body"><tr><td colspan="6" class="empty-cell">Não há execuções salvas.</td></tr></tbody></table></div></section>
+
+      <section class="panel comparison" id="comparison" aria-labelledby="comparison-title">
+        <div class="section-heading"><div><h2 id="comparison-title">Comparação de fórmulas</h2><p class="section-intro">Modelo original e adaptador nos mesmos 500 testes.</p></div><span class="quiet-tag">Teste congelado</span></div>
+        <div class="evaluation-controls"><label>Modelo para avaliar<select id="adapter-select"><option value="">Qwen original · sem adaptador</option></select></label><button class="primary" id="evaluate" data-start>Avaliar nos 500 testes <svg class="btn-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></button></div>
+        <p class="metric-note">Métrica atual: <strong>correspondência normalizada</strong>. A caixa ASCII dentro de aspas duplas é ignorada. Fórmulas alternativas podem funcionar e receber zero. Este painel não executa fórmulas no Excel.</p>
+        <div id="comparison-result" class="comparison-result" hidden></div>
+        <div id="paired-comparison" class="workbook-evaluation-results" hidden>
+          <h3>Resultados com e sem ferramentas</h3>
+          <div id="paired-comparison-content"></div>
+        </div>
+        <div class="response-toolbar"><h3 id="responses-title">Respostas do baseline</h3><div><label class="sr-only" for="response-filter">Filtrar respostas</label><select id="response-filter"><option value="all">Todas as respostas</option><option value="wrong">Apenas erros</option><option value="correct">Apenas acertos</option><option value="gained">Novos acertos</option><option value="lost">Regressões</option></select><label class="sr-only" for="response-search">Buscar ID ou fórmula</label><input type="search" id="response-search" placeholder="Buscar ID ou fórmula"></div></div>
+        <div id="responses" class="responses"><p class="empty-cell">Carregando respostas salvas…</p></div>
+        <div class="pagination"><span id="page-label">—</span><div><button class="secondary" id="prev-page">Anterior</button><button class="secondary" id="next-page">Próxima</button></div></div>
+      </section>
+      <footer class="page-footer"><span>Formula Lab · Qwen3-4B-Instruct-2507</span><span>Prompt fixo · NF4 · geração gulosa · até 128 tokens</span></footer>
+    </div>
+
+    <div id="view-chat" class="tab-view" hidden>
+      <header class="page-header chat-page-header">
+        <div>
+          <h1>Chat de fórmulas</h1>
+          <p id="chat-session-subtitle">Nova conversa</p>
+        </div>
+        <div class="chat-header-actions">
+          <button type="button" class="secondary" id="workbook-open-btn">Abrir planilha</button>
+          <button type="button" class="secondary" id="chat-export-btn">Exportar conversa</button>
+          <button type="button" class="secondary" id="chat-clear-btn">Nova conversa</button>
+          <button type="button" class="secondary chat-toggle-btn" id="chat-toggle-history-btn" aria-label="Alternar histórico de conversas" aria-expanded="false" aria-controls="chat-history-sidebar">
+            <svg class="icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
+            <span>Histórico</span>
+          </button>
+          <span class="quiet-tag">Qwen3 · 4B Instruct</span>
+        </div>
+      </header>
+
+      <div id="chat-running-banner" class="chat-running-banner" hidden>
+        <span class="live-dot" aria-hidden="true"></span>
+        <span id="chat-banner-info"></span>
+        <a href="#workspace" id="chat-goto-training">Acompanhar <svg class="icon-inline" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg></a>
+      </div>
+
+      <div class="chat-workbench" id="chat-workbench">
+        <aside class="chat-history-sidebar" id="chat-history-sidebar" aria-label="Histórico de conversas">
+          <div class="chat-history-header">
+            <div class="chat-history-title-wrap">
+              <strong id="chat-history-title">Conversas</strong>
+              <span id="chat-history-count" class="chat-history-badge">0</span>
+            </div>
+            <button type="button" class="primary new-chat-btn" id="chat-new-btn">
+              <svg class="icon-inline" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+              <span>Nova conversa</span>
+            </button>
+          </div>
+
+          <label class="sr-only" for="chat-history-search">Buscar conversa</label>
+          <input id="chat-history-search" type="search" placeholder="Buscar conversa…" autocomplete="off">
+          <div class="chat-sessions-list" id="chat-sessions-list" role="list" aria-label="Conversas salvas"></div>
+
+          <div class="chat-history-footer">
+            <button type="button" class="text-button text-danger" id="chat-clear-all-btn">Limpar histórico</button>
+          </div>
+        </aside>
+
+        <section class="panel chat-panel" aria-labelledby="chat-title">
+          <h2 id="chat-title" class="sr-only">Conversa</h2>
+
+          <div class="chat-model-controls">
+            <label for="chat-model-select">
+              Modelo em teste
+              <select id="chat-model-select">
+                <option value="">Modelo base · original</option>
+                <option value="latest" disabled>Último treinado · indisponível</option>
+              </select>
+            </label>
+            <div class="chat-model-description">
+              <strong id="chat-model-badge">Modelo base</strong>
+              <p id="chat-model-detail">Pesos originais, sem adaptador de treinamento.</p>
+              <small>Trocar o modelo inicia uma nova conversa.</small>
+              <label class="checkbox-label chat-decensor-option">
+                <input id="chat-with-decensor" type="checkbox">
+                <span>Combinar com o adaptador de recusa<small>Soma o LoRA de recusa ao modelo escolhido, sem mesclar os pesos. O treino de fórmulas continua em outro adaptador.</small></span>
+              </label>
+            </div>
+          </div>
+
+          <div id="chat-notice" class="notice" role="alert" hidden></div>
+
+          <div class="chat-container">
+            <div class="chat-messages" id="chat-messages" role="log" aria-label="Conversa" aria-live="polite"></div>
+
+            <div class="chat-input-wrapper">
+              <div class="chat-suggestions" id="chat-suggestions" aria-label="Exemplos de perguntas">
+                <button type="button" class="suggestion-chip" data-prompt="Na coluna B estão as regiões e na C os valores das vendas, das linhas 2 a 100. Gere uma fórmula de Excel em português para somar as vendas de SP acima de 100.">Somar com critérios <svg class="icon-inline" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg></button>
+                <button type="button" class="suggestion-chip" data-prompt="Em A2 está o código do produto. A tabela E2:F100 contém códigos e preços. Gere uma fórmula em português que busque o preço e retorne 0 quando não encontrar o código.">Buscar um valor <svg class="icon-inline" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg></button>
+                <button type="button" class="suggestion-chip" data-prompt="A célula A2 contém um nome completo. Gere uma fórmula de Excel em português para extrair apenas o primeiro nome.">Extrair um texto <svg class="icon-inline" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg></button>
+              </div>
+
+              <form class="chat-input-box" id="chat-form">
+                <div id="chat-attachments" aria-label="Planilhas no próximo envio" hidden></div>
+                <div class="chat-input-field-wrap">
+                  <textarea id="chat-input" rows="2" maxlength="200000" placeholder="Descreva sua planilha e a fórmula que você precisa…" aria-label="Mensagem para o modelo"></textarea>
+                  <div class="chat-input-controls">
+                    <input id="chat-file-input" type="file" accept=".xlsx,.csv,.tsv" multiple hidden>
+                    <button type="button" class="secondary" id="chat-attach-btn">Anexar planilha</button>
+                    <span class="chat-hint" id="chat-hint">Enter envia · Shift + Enter quebra linha</span>
+                    <button type="button" class="secondary" id="chat-stop-btn" hidden>Interromper</button>
+                    <button type="submit" class="chat-send-btn" id="chat-send-btn" aria-label="Enviar mensagem" disabled>
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7 7 7" /><path d="M12 19V5" /></svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="chat-context-summary"><span id="chat-context-count">Nenhum arquivo anexado</span><span id="chat-input-count">0 caracteres</span></div>
+              </form>
+              <p id="chat-generation-status" class="chat-generation-status" role="status">Conectando ao servidor…</p>
+              <p class="chat-disclaimer">O chat é exploratório. Para medir acertos, use a avaliação dos 500 testes. Valide as fórmulas na planilha.</p>
+            </div>
+          </div>
+
+          <div id="workbook-dock" class="workbook-dock">
+          <section class="workbook-bench" id="workbook-bench" aria-labelledby="workbook-title">
+            <div class="workbook-bench-header">
+              <div class="workbook-title-wrap">
+                <h3 id="workbook-title">Bancada Excel</h3>
+                <span id="workbook-engine-status" class="workbook-engine-status" role="status">Verificando Excel…</span>
+              </div>
+              <div class="workbook-window-actions">
+                <button type="button" class="secondary workbook-collapse-btn" id="workbook-expand-btn">Ampliar planilha</button>
+                <button type="button" class="secondary workbook-collapse-btn" id="workbook-close-btn" hidden>Voltar ao chat</button>
+                <button type="button" class="secondary workbook-collapse-btn" id="workbook-collapse-btn" aria-expanded="true" aria-controls="workbook-bench-body">Recolher</button>
+              </div>
+            </div>
+            <div id="workbook-bench-body" class="workbook-bench-body">
+              <div class="workbook-toolbar">
+                <div class="workbook-import-controls">
+                  <label class="sr-only" for="workbook-attachment-select">Planilha anexada à conversa</label>
+                  <select id="workbook-attachment-select" aria-label="Planilha anexada à conversa">
+                    <option value="">Importar uma planilha anexada ao chat</option>
+                  </select>
+                  <button type="button" class="secondary" id="workbook-import-btn">Importar planilha</button>
+                  <button type="button" class="secondary" id="workbook-create-btn">Nova planilha</button>
+                  <button type="button" class="secondary" id="workbook-download-btn" disabled>Baixar cópia</button>
+                </div>
+                <div class="workbook-session-controls">
+                  <label class="workbook-sheet-select-label" for="workbook-sheet-select">Aba
+                    <select id="workbook-sheet-select" disabled><option value="">—</option></select>
+                  </label>
+                  <label class="checkbox-label workbook-tools-option">
+                    <input id="chat-use-excel-tools" type="checkbox" disabled>
+                    <span>Usar ferramentas do Excel<small>Permite ler valores, testar fórmulas e corrigir erros nesta conversa.</small></span>
+                  </label>
+                </div>
+              </div>
+
+              <div id="workbook-notice" class="workbook-notice" role="status" aria-live="polite" hidden></div>
+
+              <div class="workbook-formula-bar">
+                <div class="workbook-cell-address" aria-live="polite">
+                  <span>Célula selecionada</span>
+                  <strong id="workbook-cell-name">—</strong>
+                </div>
+                <label class="workbook-entry-label" for="workbook-cell-entry">Conteúdo
+                  <input id="workbook-cell-entry" type="text" autocomplete="off" spellcheck="false" placeholder="Selecione uma célula">
+                </label>
+                <div class="workbook-cell-actions">
+                  <button type="button" class="secondary" id="workbook-set-value-btn" disabled>Definir valor</button>
+                  <button type="button" class="secondary" id="workbook-set-formula-btn" disabled>Inserir fórmula</button>
+                  <button type="button" class="secondary" id="workbook-test-formula-btn" disabled>Testar fórmula</button>
+                </div>
+              </div>
+                <p class="workbook-literal-note">Números simples são reconhecidos. Inicie com ' para manter texto. Use <strong>Inserir fórmula</strong> para calcular uma fórmula.</p>
+
+              <div class="workbook-grid-shell">
+                <div id="workbook-grid" aria-label="Grade editável da planilha"></div>
+                <div id="workbook-grid-empty" class="workbook-grid-empty">Importe uma planilha ou crie uma planilha para começar.</div>
+              </div>
+              <div class="workbook-grid-footer">
+                <span id="workbook-grid-scope">Prévia de até 50 linhas e 12 colunas. A planilha original não é sobrescrita.</span>
+                <button type="button" class="primary" id="workbook-apply-btn" disabled>Aplicar alterações</button>
+              </div>
+              <form id="workbook-chat-form" class="workbook-chat-form">
+                <label for="workbook-chat-input">Pedir à IA nesta planilha</label>
+                <div><input id="workbook-chat-input" type="text" placeholder="Ex.: some A1 e A2 e escreva o resultado em B1" autocomplete="off"><button type="submit" class="primary" id="workbook-chat-send">Enviar à IA</button></div>
+                <p id="workbook-chat-status" role="status" aria-live="polite">A IA pode ler, testar e editar a cópia de trabalho.</p>
+                <p id="workbook-chat-response" hidden></p>
+              </form>
+
+              <div class="workbook-evaluation">
+                <div class="workbook-evaluation-controls">
+                  <label for="workbook-test-count">Comparação com e sem ferramentas
+                    <select id="workbook-test-count">
+                      <option value="10">10 testes</option>
+                      <option value="50">50 testes</option>
+                      <option value="500">500 testes</option>
+                    </select>
+                  </label>
+                  <button type="button" class="secondary" id="workbook-compare-btn">Iniciar comparação</button>
+                  <a href="#workspace" id="workbook-evaluation-goto" hidden>Acompanhar execução</a>
+                </div>
+                <div id="workbook-evaluation-status" class="workbook-evaluation-status" role="status" aria-live="polite">Usa os testes do Formula Lab com e sem ferramentas; não altera esta planilha.</div>
+                <details id="workbook-evaluation-results" class="workbook-evaluation-results" hidden>
+                  <summary>Resultados da comparação</summary>
+                  <div id="workbook-evaluation-result-content"></div>
+                </details>
+              </div>
+            </div>
+          </section>
+          </div>
+        </section>
+      </div>
+
+      <footer class="page-footer"><span>Formula Lab · Qwen3-4B-Instruct-2507</span><span>Janela de contexto de 32.768 tokens · execução local</span></footer>
+    </div>
+  </main>
+  <dialog id="workbook-window" class="workbook-window" aria-labelledby="workbook-title"></dialog>
+</body>
+</html>

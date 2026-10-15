@@ -1,0 +1,32 @@
+name: Verificar instalação e testes
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v7
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Configurar ambiente limpo e executar testes Python
+        shell: powershell
+        run: .\configurar.ps1 -SemModelo -SemDados -SemVerificarGPU -ComTestes
+      - name: Verificar JavaScript
+        shell: powershell
+        run: |
+          node dashboard/test_workbook_frontend.cjs
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          node dashboard/test_chat_frontend.cjs
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          node dashboard/test_chat_sessions.cjs
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          node dashboard/test_comparison_frontend.cjs
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          node dashboard/test_training_frontend.cjs
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }

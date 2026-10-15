@@ -1,0 +1,14 @@
+Fonte: NL2Formula (Zhao et al., 2024), arXiv:2402.14853
+Repositorio: https://github.com/timetub/NL2Formula
+Commit: bd45ed38dc6bf244366ae8a262055c38217c1d54
+Data de acesso: 2026-09-28
+
+Arquivos baixados, sem ponteiro Git LFS (blobs Git comuns):
+https://raw.githubusercontent.com/timetub/NL2Formula/bd45ed38dc6bf244366ae8a262055c38217c1d54/dataset/train.json
+https://raw.githubusercontent.com/timetub/NL2Formula/bd45ed38dc6bf244366ae8a262055c38217c1d54/dataset/valid.json
+https://raw.githubusercontent.com/timetub/NL2Formula/bd45ed38dc6bf244366ae8a262055c38217c1d54/dataset/test.json
+
+Tamanhos observados no download, iguais aos blobs da API do GitHub:
+train.json 68108457
+valid.json 6824305
+test.json 12980400
