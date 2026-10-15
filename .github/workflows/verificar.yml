@@ -17,6 +17,15 @@ jobs:
       - name: Configurar ambiente limpo e executar testes Python
         shell: powershell
         run: .\configurar.ps1 -SemModelo -SemDados -SemVerificarGPU -ComTestes
+      - name: Conferir reutilização offline sem reinstalar pacotes
+        shell: powershell
+        run: |
+          $pacote = Get-Item .venv/Lib/site-packages/torch/__init__.py
+          $instaladoEm = $pacote.LastWriteTimeUtc
+          $env:UV_OFFLINE = '1'
+          .\configurar.ps1 -SemModelo -SemDados -SemVerificarGPU
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          if ((Get-Item $pacote.FullName).LastWriteTimeUtc -ne $instaladoEm) { throw 'O pacote existente foi reinstalado.' }
       - name: Verificar JavaScript
         shell: powershell
         run: |

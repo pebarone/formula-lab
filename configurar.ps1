@@ -44,11 +44,19 @@ try {
             $runtime = Start-Process -FilePath $runtimePath -ArgumentList "/install", "/quiet", "/norestart" -Verb RunAs -WindowStyle Hidden -Wait -PassThru
             if ($runtime.ExitCode -eq 3010) { throw "O runtime foi instalado. Reinicie o Windows e execute o script novamente." }
             if ($runtime.ExitCode -notin @(0, 1638)) { throw "A instalação do Visual C++ falhou (código $($runtime.ExitCode))." }
+        } else {
+            Write-Host "[Reutilizar] Runtime do Visual C++ já encontrado; nenhuma instalação necessária."
         }
         $uvCommand = Get-Command uv -ErrorAction SilentlyContinue
         $localUv = Join-Path $projectRoot ".tools\uv\uv.exe"
-        if ($uvCommand) { $uvPath = $uvCommand.Source }
-        elseif (Test-Path -LiteralPath $localUv) { $uvPath = $localUv }
+        if ($uvCommand) {
+            $uvPath = $uvCommand.Source
+            Write-Host "[Reutilizar] uv já encontrado no PATH: $uvPath"
+        }
+        elseif (Test-Path -LiteralPath $localUv) {
+            $uvPath = $localUv
+            Write-Host "[Reutilizar] uv já instalado neste projeto: $uvPath"
+        }
         else {
             Write-Host "Instalando uv na pasta local .tools (sem alterar o PATH do sistema)..."
             $oldInstallDir = $env:UV_INSTALL_DIR
@@ -65,13 +73,30 @@ try {
             $uvPath = $localUv
         }
         $env:UV_PROJECT_ENVIRONMENT = $environmentPath
-        Write-Host "Preparando Python 3.12 e dependências em $environmentPath..."
+        Invoke-Checked $uvPath @("--version")
+        if (Test-Path -LiteralPath $pythonPath) {
+            Write-Host "[Conferir] Ambiente existente em $environmentPath; pacotes compatíveis serão mantidos."
+        } else {
+            $previousErrorAction = $ErrorActionPreference
+            try {
+                $ErrorActionPreference = 'Continue'
+                $existingPython = & $uvPath python find 3.12 --system --no-project --no-python-downloads 2>$null
+                $pythonFound = $LASTEXITCODE -eq 0
+            } finally {
+                $ErrorActionPreference = $previousErrorAction
+            }
+            if ($pythonFound) { Write-Host "[Reutilizar] Python 3.12 já disponível: $existingPython" }
+            else { Write-Host "[Baixar] Python 3.12 ainda não encontrado; o uv vai prepará-lo automaticamente." }
+            Write-Host "[Criar] Ambiente isolado em $environmentPath."
+        }
+        Write-Host "[Conferir] Sincronizando uv.lock: instalar somente o que faltar ou estiver em versão diferente, sem remover pacotes extras."
         Invoke-Checked $uvPath @("sync", "--locked", "--inexact", "--python", "3.12")
         $prepareArgs = @("-m", "tools.preparar_ambiente")
         if ($SemModelo) { $prepareArgs += "--sem-modelo" }
         if ($SemDados) { $prepareArgs += "--sem-dados" }
         Invoke-Checked $pythonPath $prepareArgs
     }
+    Write-Host "[Verificar] Conferindo dependências, GPU e arquivos solicitados..."
     if (-not (Test-Path -LiteralPath $pythonPath)) { throw "Ambiente ausente em $environmentPath. Execute sem -SomenteVerificar para instalar." }
     $verifyArgs = @("-m", "tools.verificar_ambiente")
     if ($SemModelo) { $verifyArgs += "--sem-modelo" }

@@ -1,0 +1,8 @@
+{
+  "model_snapshot": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "torch": "2.11.0+cu128",
+  "transformers": "5.17.0",
+  "peft": "0.21.0",
+  "accelerate": "1.15.0",
+  "bitsandbytes": "0.50.2"
+}

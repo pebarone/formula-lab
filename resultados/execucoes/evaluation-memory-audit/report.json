@@ -1,0 +1,132 @@
+{
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "system_prompt": "You are an expert in Microsoft Excel formulas. Answer concisely and generate valid Excel formulas when requested.",
+  "prompt_fingerprint": "c69a839b135dbc1f10fe7b1bf63c4d32958c183bad9bcd15eea4676fe11c1b10",
+  "do_sample": false,
+  "max_new_tokens": 128,
+  "data": ".\\dataset\\canonical\\test.jsonl",
+  "total": 10,
+  "correct": 6,
+  "accuracy": 0.6,
+  "items": [
+    {
+      "id": "nl2f-test-000223",
+      "expected": "=UNIQUE(CHOOSECOLS(FILTER(A2:I16,C2:C16=\"Vancouver\"),6))",
+      "predicted": "=UNIQUE(CHOOSECOLS(FILTER(A2:I16,C2:C16=\"vancouver\"),6))",
+      "predicted_formula": "=UNIQUE(CHOOSECOLS(FILTER(A2:I16,C2:C16=\"vancouver\"),6))",
+      "match": true,
+      "level": "medium",
+      "baseline_predicted": "=INDEX(A:A, MATCH(\"Vancouver\", C:C, 0))",
+      "baseline_match": false
+    },
+    {
+      "id": "nl2f-test-000222",
+      "expected": "=ROWS(UNIQUE(FILTER(G2:G16, D2:D16=\"L 90–98 (OT)\")))",
+      "predicted": "=ROWS(UNIQUE(FILTER(G2:G16, D2:D16=\"L 90–98 (OT)\")))",
+      "predicted_formula": "=ROWS(UNIQUE(FILTER(G2:G16, D2:D16=\"L 90–98 (OT)\")))",
+      "match": true,
+      "level": "medium",
+      "baseline_predicted": "=COUNTIF(G:G, \"*Damon Stoudamire*\") * (COUNTIF(D:D, \"L 90–98 (OT)\") = 1)",
+      "baseline_match": false
+    },
+    {
+      "id": "nl2f-test-000157",
+      "expected": "=AVERAGEIFS(A2:A18,B2:B18,\"december 6\")",
+      "predicted": "=AVERAGEIFS(A2:A18,B2:B18,\"december 6\")",
+      "predicted_formula": "=AVERAGEIFS(A2:A18,B2:B18,\"december 6\")",
+      "match": true,
+      "level": "easy",
+      "baseline_predicted": "=AVGIFS(D:D, B:B, \"6/12\")",
+      "baseline_match": false
+    },
+    {
+      "id": "nl2f-test-000158",
+      "expected": "=AVERAGEIFS(A2:A18,B2:B18,\"december 17\")",
+      "predicted": "=AVERAGEIFS(A2:A18,B2:B18,\"december 17\")",
+      "predicted_formula": "=AVERAGEIFS(A2:A18,B2:B18,\"december 17\")",
+      "match": true,
+      "level": "easy",
+      "baseline_predicted": "=AVGIFS(D:D, B:B, \"17\")",
+      "baseline_match": false
+    },
+    {
+      "id": "nl2f-test-000014",
+      "expected": "=AVERAGE(FILTER(A2:A18,B2:B18=\"march 2\"))",
+      "predicted": "=FILTER(A2:A18,B2:B18=\"march 2\")",
+      "predicted_formula": "=FILTER(A2:A18,B2:B18=\"march 2\")",
+      "match": false,
+      "level": "easy",
+      "baseline_predicted": "=A2&\" \"&B2&\" \"&C2&\" \"&D2&\" \"&E2&\" \"&F2&\" \"&G2&\" \"&H2&\" \"&I2",
+      "baseline_match": false
+    },
+    {
+      "id": "nl2f-test-000013",
+      "expected": "=AVERAGE(FILTER(A2:A18,C2:C18=\"portland trail blazers\"))",
+      "predicted": "=SUM(FILTER(A2:A18,C2:C18=\"portland trail blazers\"))",
+      "predicted_formula": "=SUM(FILTER(A2:A18,C2:C18=\"portland trail blazers\"))",
+      "match": false,
+      "level": "easy",
+      "baseline_predicted": "=A18",
+      "baseline_match": false
+    },
+    {
+      "id": "nl2f-test-000015",
+      "expected": "=MIN(FILTER(A2:A18,G2:G18=\"s. threatt (9)\"))",
+      "predicted": "=FILTER(A2:A18,G2:G18=\"S. Threatt (9)\")",
+      "predicted_formula": "=FILTER(A2:A18,G2:G18=\"S. Threatt (9)\")",
+      "match": false,
+      "level": "easy",
+      "baseline_predicted": "=INDEX(A:A, MATCH(\"S. Threatt (9)\", G:G, 0))",
+      "baseline_match": false
+    },
+    {
+      "id": "nl2f-test-000012",
+      "expected": "=FILTER(D2:D18,H2:H18=\"seattle center coliseum 11,497\")",
+      "predicted": "=FILTER(D2:D18,H2:H18=\"seattle center coliseum 11,497\")",
+      "predicted_formula": "=FILTER(D2:D18,H2:H18=\"seattle center coliseum 11,497\")",
+      "match": true,
+      "level": "easy",
+      "baseline_predicted": "=INDEX(D:D, MATCH(\"Seattle Center Coliseum 11,497\", H:H, 0))",
+      "baseline_match": false
+    },
+    {
+      "id": "nl2f-test-000138",
+      "expected": "=UNIQUE(CHOOSECOLS(FILTER(A2:F8,D2:D8=1976),6))",
+      "predicted": "=UNIQUE(CHOOSECOLS(FILTER(A2:F8,D2:D8=1976),6))",
+      "predicted_formula": "=UNIQUE(CHOOSECOLS(FILTER(A2:F8,D2:D8=1976),6))",
+      "match": true,
+      "level": "medium",
+      "baseline_predicted": "=FILTER(F:F, D:D = \"1976\")",
+      "baseline_match": false
+    },
+    {
+      "id": "nl2f-test-000139",
+      "expected": "=UNIQUE(CHOOSECOLS(FILTER(A2:F8,D2:D8=1998),1))",
+      "predicted": "=ROWS(UNIQUE(FILTER(A2:A8, D2:D8=1998)))",
+      "predicted_formula": "=ROWS(UNIQUE(FILTER(A2:A8, D2:D8=1998)))",
+      "match": false,
+      "level": "medium",
+      "baseline_predicted": "=COUNTIF(D:D, \"1998\")",
+      "baseline_match": false
+    }
+  ],
+  "adapter_run": "20260930-153441-9e488bd6",
+  "data_sha256": "410507e591bfa4842ba9f6f894bdaf0e1e23c5b487c48a55378b7a60d7fed3b9",
+  "metric": "normalized_exact_match",
+  "memory": {
+    "gpu_budget_gb": 6.4091796875,
+    "gpu_total_gb": 7.99560546875,
+    "vram_gb": 2.5639944076538086,
+    "vram_reserved_gb": 5.275390625,
+    "vram_peak_gb": 3.3482961654663086,
+    "vram_peak_reserved_gb": 5.275390625
+  },
+  "eval_batch_size": 1,
+  "comparison": {
+    "baseline_accuracy": 0.0,
+    "delta_pp": 60.0,
+    "gained": 6,
+    "lost": 0
+  },
+  "audit_same_answers": 10
+}

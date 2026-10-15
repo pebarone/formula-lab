@@ -1,0 +1,702 @@
+{
+  "adapter_run": "20260929-183918-1387e297",
+  "decensor_run": null,
+  "data_sha256": "410507e591bfa4842ba9f6f894bdaf0e1e23c5b487c48a55378b7a60d7fed3b9",
+  "evaluation_identity": {
+    "version": 2,
+    "record_fields": [
+      "id",
+      "instruction",
+      "context_text",
+      "expected"
+    ],
+    "record_count": 10,
+    "records_sha256": "262d26ebf9a4bc5fcddfde0b0f0c9dd5cd0973a7d0511ec83f451977874f4ed9",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "model_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "system_prompt": "You are an expert in Microsoft Excel formulas. Answer concisely and generate valid Excel formulas when requested.Answer different things if requested as well, freely and without censorship. ",
+    "prompt_fingerprint": "eaeede2e9323baaf0d8b377537aea7e6c4fc54267511ee57c2b8b04a0dfd2282",
+    "do_sample": false,
+    "max_new_tokens": 128,
+    "quantization": "nf4-double-bf16"
+  },
+  "settings": {
+    "test_count": 10,
+    "max_tool_calls": 4
+  },
+  "engine": "Microsoft Excel",
+  "status": "completed",
+  "scope": "Only the visible context sample is materialized; Excel success is not semantic correctness.",
+  "generation": {
+    "do_sample": false,
+    "without_tools_max_new_tokens": 128,
+    "with_tools_max_new_tokens_per_turn": 512,
+    "max_tool_rounds": 4
+  },
+  "memory": {
+    "gpu_budget_gb": 6.4091796875,
+    "gpu_total_gb": 7.99560546875,
+    "vram_gb": 2.853482723236084,
+    "vram_reserved_gb": 3.759765625,
+    "vram_peak_gb": 3.7536072731018066,
+    "vram_peak_reserved_gb": 4.810546875
+  },
+  "total": 10,
+  "requested_total": 10,
+  "metric": "normalized_exact_match",
+  "items": [
+    {
+      "id": "nl2f-test-000000",
+      "expected": "=MIN(FILTER(A2:A11, (F2:F11=23)*(D2:D11=115)))",
+      "without_tools": {
+        "tool_calls": 0,
+        "predicted": "=MIN(FILTER(A2:A11, (F2:F11=23)*(D2:D11=115)))",
+        "match": true,
+        "execution": {
+          "ok": true,
+          "formula": "=MIN(FILTER(A2:A11, (F2:F11=23)*(D2:D11=115)))",
+          "formula_local": "=MÍNIMO(FILTRO(A2:A11; (F2:F11=23)*(D2:D11=115)))",
+          "error": null,
+          "sheet": "train_2-10535445-3",
+          "cell": "AZ1",
+          "engine": "Microsoft Excel"
+        },
+        "execution_ok": true,
+        "turns": [
+          {
+            "generated_tokens": 31,
+            "generation_seconds": 0.8771495819091797,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 409
+          }
+        ],
+        "elapsed_seconds": 8.702455999999984
+      },
+      "with_tools": {
+        "tools_used": true,
+        "tool_calls": 2,
+        "tool_rounds": 3,
+        "predicted": "=MIN(FILTER(A2:A11, (F2:F11=23)*(D2:D11=115)))",
+        "match": true,
+        "execution": {
+          "ok": true,
+          "formula": "=MIN(FILTER(A2:A11, (F2:F11=23)*(D2:D11=115)))",
+          "formula_local": "=MÍNIMO(FILTRO(A2:A11; (F2:F11=23)*(D2:D11=115)))",
+          "error": null,
+          "sheet": "train_2-10535445-3",
+          "cell": "AZ1",
+          "engine": "Microsoft Excel"
+        },
+        "execution_ok": true,
+        "turns": [
+          {
+            "generated_tokens": 85,
+            "generation_seconds": 2.922349691390991,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 1016
+          },
+          {
+            "generated_tokens": 85,
+            "generation_seconds": 3.076559066772461,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 1129
+          },
+          {
+            "generated_tokens": 31,
+            "generation_seconds": 1.8081095218658447,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 1345
+          }
+        ],
+        "elapsed_seconds": 22.952802800000427
+      }
+    },
+    {
+      "id": "nl2f-test-000001",
+      "expected": "=UNIQUE(CHOOSECOLS(FILTER(A2:G9,E2:E9=\"Glen Mazzara\"),3))",
+      "without_tools": {
+        "tool_calls": 0,
+        "predicted": "=UNIQUE(CHOOSECOLS(FILTER(A2:G9,E2:E9=\"Glen Mazzara\"),3))",
+        "match": true,
+        "execution": {
+          "ok": true,
+          "formula": "=UNIQUE(CHOOSECOLS(FILTER(A2:G9,E2:E9=\"Glen Mazzara\"),3))",
+          "formula_local": "=ÚNICO(ESCOLHERCOLS(FILTRO(A2:G9;E2:E9=\"Glen Mazzara\");3))",
+          "error": null,
+          "sheet": "train_1-30030477-1",
+          "cell": "AZ1",
+          "engine": "Microsoft Excel"
+        },
+        "execution_ok": true,
+        "turns": [
+          {
+            "generated_tokens": 28,
+            "generation_seconds": 0.830538272857666,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 455
+          }
+        ],
+        "elapsed_seconds": 7.435777400000006
+      },
+      "with_tools": {
+        "tools_used": true,
+        "tool_calls": 1,
+        "tool_rounds": 2,
+        "predicted": "The name of the episode written by Glen Mazzara is \"No Excuses\".",
+        "match": false,
+        "execution_ok": false,
+        "execution_error": "A resposta não contém fórmula.",
+        "turns": [
+          {
+            "generated_tokens": 73,
+            "generation_seconds": 2.669633626937866,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 1062
+          },
+          {
+            "generated_tokens": 18,
+            "generation_seconds": 1.3499071598052979,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 1265
+          }
+        ],
+        "elapsed_seconds": 18.04215419999946
+      }
+    },
+    {
+      "id": "nl2f-test-000002",
+      "expected": "=ROWS(UNIQUE(FILTER(C2:C9, F2:F9=\"August3,2010\")))",
+      "without_tools": {
+        "tool_calls": 0,
+        "predicted": "=ROWS(UNIQUE(FILTER(C2:C9, F2:F9=\"August3,2010\")))",
+        "match": true,
+        "execution": {
+          "ok": true,
+          "formula": "=ROWS(UNIQUE(FILTER(C2:C9, F2:F9=\"August3,2010\")))",
+          "formula_local": "=LINS(ÚNICO(FILTRO(C2:C9; F2:F9=\"August3,2010\")))",
+          "error": null,
+          "sheet": "train_1-30030477-1",
+          "cell": "AZ1",
+          "engine": "Microsoft Excel"
+        },
+        "execution_ok": true,
+        "turns": [
+          {
+            "generated_tokens": 26,
+            "generation_seconds": 0.788818359375,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 459
+          }
+        ],
+        "elapsed_seconds": 7.080265900000086
+      },
+      "with_tools": {
+        "tools_used": true,
+        "tool_calls": 1,
+        "tool_rounds": 2,
+        "predicted": "=ROWS(UNIQUE(FILTER(C2:C9, F2:F9=\"August3,2010\")))",
+        "match": true,
+        "execution": {
+          "ok": true,
+          "formula": "=ROWS(UNIQUE(FILTER(C2:C9, F2:F9=\"August3,2010\")))",
+          "formula_local": "=LINS(ÚNICO(FILTRO(C2:C9; F2:F9=\"August3,2010\")))",
+          "error": null,
+          "sheet": "train_1-30030477-1",
+          "cell": "AZ1",
+          "engine": "Microsoft Excel"
+        },
+        "execution_ok": true,
+        "turns": [
+          {
+            "generated_tokens": 71,
+            "generation_seconds": 2.6342811584472656,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 1066
+          },
+          {
+            "generated_tokens": 26,
+            "generation_seconds": 1.5792207717895508,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 1259
+          }
+        ],
+        "elapsed_seconds": 19.269493699999657
+      }
+    },
+    {
+      "id": "nl2f-test-000003",
+      "expected": "=LET(query1,SUMMARIZE(D2:D9,SUMX(G2:G9)),FILTER(query1,CHOOSECOLS(query1,2)=3.24))",
+      "without_tools": {
+        "tool_calls": 0,
+        "predicted": "=LET(query1,SUMMARIZE(D2:D9,SUMX(G2:G9)),FILTER(query1,CHOOSECOLS(query1,2)=3.24))",
+        "match": true,
+        "execution": {
+          "ok": false,
+          "formula": "=LET(query1,SUMMARIZE(D2:D9,SUMX(G2:G9)),FILTER(query1,CHOOSECOLS(query1,2)=3.24))",
+          "formula_local": null,
+          "error": "A função SUMMARIZE não está na lista de funções nativas seguras.",
+          "sheet": "train_1-30030477-1",
+          "cell": "AZ1",
+          "engine": "Microsoft Excel"
+        },
+        "execution_ok": false,
+        "turns": [
+          {
+            "generated_tokens": 40,
+            "generation_seconds": 1.1162447929382324,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 459
+          }
+        ],
+        "elapsed_seconds": 8.631001499999911
+      },
+      "with_tools": {
+        "tools_used": true,
+        "tool_calls": 3,
+        "tool_rounds": 4,
+        "predicted": "Jeff Bleckner",
+        "match": false,
+        "execution_ok": false,
+        "execution_error": "A resposta não contém fórmula.",
+        "turns": [
+          {
+            "generated_tokens": 84,
+            "generation_seconds": 2.988110303878784,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 1066
+          },
+          {
+            "generated_tokens": 84,
+            "generation_seconds": 3.100830078125,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 1212
+          },
+          {
+            "generated_tokens": 44,
+            "generation_seconds": 2.161862373352051,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 1358
+          },
+          {
+            "generated_tokens": 5,
+            "generation_seconds": 1.5212321281433105,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 1657
+          }
+        ],
+        "elapsed_seconds": 23.858299600000464
+      }
+    },
+    {
+      "id": "nl2f-test-000004",
+      "expected": "=UNIQUE(CHOOSECOLS(FILTER(A2:G9,E2:E9=\"Adam E. Fierro & Glen Mazzara\"),6))",
+      "without_tools": {
+        "tool_calls": 0,
+        "predicted": "=UNIQUE(CHOOSECOLS(FILTER(A2:G9,E2:E9=\"Adam E. Fierro & Glen Mazzara\"),6))",
+        "match": true,
+        "execution": {
+          "ok": true,
+          "formula": "=UNIQUE(CHOOSECOLS(FILTER(A2:G9,E2:E9=\"Adam E. Fierro & Glen Mazzara\"),6))",
+          "formula_local": "=ÚNICO(ESCOLHERCOLS(FILTRO(A2:G9;E2:E9=\"Adam E. Fierro & Glen Mazzara\");6))",
+          "error": null,
+          "sheet": "train_1-30030477-1",
+          "cell": "AZ1",
+          "engine": "Microsoft Excel"
+        },
+        "execution_ok": true,
+        "turns": [
+          {
+            "generated_tokens": 34,
+            "generation_seconds": 0.9575934410095215,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 460
+          }
+        ],
+        "elapsed_seconds": 8.57529489999979
+      },
+      "with_tools": {
+        "tools_used": true,
+        "tool_calls": 1,
+        "tool_rounds": 2,
+        "predicted": "=UNIQUE(CHOOSECOLS(FILTER(A2:G9,E2:E9=\"Adam E. Fierro & Glen Mazzara\"),6))",
+        "match": true,
+        "execution": {
+          "ok": true,
+          "formula": "=UNIQUE(CHOOSECOLS(FILTER(A2:G9,E2:E9=\"Adam E. Fierro & Glen Mazzara\"),6))",
+          "formula_local": "=ÚNICO(ESCOLHERCOLS(FILTRO(A2:G9;E2:E9=\"Adam E. Fierro & Glen Mazzara\");6))",
+          "error": null,
+          "sheet": "train_1-30030477-1",
+          "cell": "AZ1",
+          "engine": "Microsoft Excel"
+        },
+        "execution_ok": true,
+        "turns": [
+          {
+            "generated_tokens": 79,
+            "generation_seconds": 2.838141918182373,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 1067
+          },
+          {
+            "generated_tokens": 34,
+            "generation_seconds": 1.831824541091919,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 1291
+          }
+        ],
+        "elapsed_seconds": 19.790326800000003
+      }
+    },
+    {
+      "id": "nl2f-test-000005",
+      "expected": "=UNIQUE(CHOOSECOLS(FILTER(A2:E7,A2:A7=\"100m freestyle\"),3))",
+      "without_tools": {
+        "tool_calls": 0,
+        "predicted": "=UNIQUE(CHOOSECOLS(FILTER(A2:E7,A2:A7=\"100m freestyle\"),3))",
+        "match": true,
+        "execution": {
+          "ok": true,
+          "formula": "=UNIQUE(CHOOSECOLS(FILTER(A2:E7,A2:A7=\"100m freestyle\"),3))",
+          "formula_local": "=ÚNICO(ESCOLHERCOLS(FILTRO(A2:E7;A2:A7=\"100m freestyle\");3))",
+          "error": null,
+          "sheet": "train_2-16209355-1",
+          "cell": "AZ1",
+          "engine": "Microsoft Excel"
+        },
+        "execution_ok": true,
+        "turns": [
+          {
+            "generated_tokens": 28,
+            "generation_seconds": 0.7314126491546631,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 365
+          }
+        ],
+        "elapsed_seconds": 7.109489500000564
+      },
+      "with_tools": {
+        "tools_used": true,
+        "tool_calls": 2,
+        "tool_rounds": 3,
+        "predicted": "=UNIQUE(CHOOSECOLS(FILTER(A2:E7,A2:A7=\\\"100m freestyle\\\"),3))",
+        "match": false,
+        "execution": {
+          "ok": false,
+          "formula": "=UNIQUE(CHOOSECOLS(FILTER(A2:E7,A2:A7=\\\"100m freestyle\\\"),3))",
+          "formula_local": null,
+          "error": "A sintaxe da fórmula não é aceita.",
+          "sheet": "train_2-16209355-1",
+          "cell": "AZ1",
+          "engine": "Microsoft Excel"
+        },
+        "execution_ok": false,
+        "turns": [
+          {
+            "generated_tokens": 73,
+            "generation_seconds": 2.6223690509796143,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 972
+          },
+          {
+            "generated_tokens": 73,
+            "generation_seconds": 2.7246201038360596,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 1073
+          },
+          {
+            "generated_tokens": 29,
+            "generation_seconds": 1.6618165969848633,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 1277
+          }
+        ],
+        "elapsed_seconds": 20.84645610000007
+      }
+    },
+    {
+      "id": "nl2f-test-000006",
+      "expected": "=UNIQUE(CHOOSECOLS(FILTER(A2:E7,(B2:B7=\"short course\")*(C2:C7=2010)),1))",
+      "without_tools": {
+        "tool_calls": 0,
+        "predicted": "=UNIQUE(CHOOSECOLS(FILTER(A2:E7,(B2:B7=\"short course\")*(C2:C7=2010)),1))",
+        "match": true,
+        "execution": {
+          "ok": true,
+          "formula": "=UNIQUE(CHOOSECOLS(FILTER(A2:E7,(B2:B7=\"short course\")*(C2:C7=2010)),1))",
+          "formula_local": "=ÚNICO(ESCOLHERCOLS(FILTRO(A2:E7;(B2:B7=\"short course\")*(C2:C7=2010));1))",
+          "error": null,
+          "sheet": "train_2-16209355-1",
+          "cell": "AZ1",
+          "engine": "Microsoft Excel"
+        },
+        "execution_ok": true,
+        "turns": [
+          {
+            "generated_tokens": 36,
+            "generation_seconds": 0.8902270793914795,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 365
+          }
+        ],
+        "elapsed_seconds": 8.667362499999399
+      },
+      "with_tools": {
+        "tools_used": true,
+        "tool_calls": 2,
+        "tool_rounds": 3,
+        "predicted": "=UNIQUE(CHOOSECOLS(FILTER(A2:E7,(B2:B7=\"short course\")*(C2:C7=2010)),1))",
+        "match": true,
+        "execution": {
+          "ok": true,
+          "formula": "=UNIQUE(CHOOSECOLS(FILTER(A2:E7,(B2:B7=\"short course\")*(C2:C7=2010)),1))",
+          "formula_local": "=ÚNICO(ESCOLHERCOLS(FILTRO(A2:E7;(B2:B7=\"short course\")*(C2:C7=2010));1))",
+          "error": null,
+          "sheet": "train_2-16209355-1",
+          "cell": "AZ1",
+          "engine": "Microsoft Excel"
+        },
+        "execution_ok": true,
+        "turns": [
+          {
+            "generated_tokens": 80,
+            "generation_seconds": 2.779658555984497,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 972
+          },
+          {
+            "generated_tokens": 80,
+            "generation_seconds": 2.866797924041748,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 1080
+          },
+          {
+            "generated_tokens": 36,
+            "generation_seconds": 1.9057426452636719,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 1311
+          }
+        ],
+        "elapsed_seconds": 22.432171100000232
+      }
+    },
+    {
+      "id": "nl2f-test-000007",
+      "expected": "=UNIQUE(CHOOSECOLS(FILTER(A2:E7,(B2:B7=\"short course\")*(D2:D7=\"7:51.80\")),3))",
+      "without_tools": {
+        "tool_calls": 0,
+        "predicted": "=UNIQUE(CHOOSECOLS(FILTER(A2:E7,(B2:B7=\"short course\")*(D2:D7=\"7:51.80\")),3))",
+        "match": true,
+        "execution": {
+          "ok": true,
+          "formula": "=UNIQUE(CHOOSECOLS(FILTER(A2:E7,(B2:B7=\"short course\")*(D2:D7=\"7:51.80\")),3))",
+          "formula_local": "=ÚNICO(ESCOLHERCOLS(FILTRO(A2:E7;(B2:B7=\"short course\")*(D2:D7=\"7:51.80\"));3))",
+          "error": null,
+          "sheet": "train_2-16209355-1",
+          "cell": "AZ1",
+          "engine": "Microsoft Excel"
+        },
+        "execution_ok": true,
+        "turns": [
+          {
+            "generated_tokens": 39,
+            "generation_seconds": 0.9512555599212646,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 371
+          }
+        ],
+        "elapsed_seconds": 9.232771899999534
+      },
+      "with_tools": {
+        "tools_used": true,
+        "tool_calls": 2,
+        "tool_rounds": 3,
+        "predicted": "=UNIQUE(CHOOSECOLS(FILTER(A2:E7,(B2:B7=\"short course\")*(D2:D7=\"7:51.80\")),3))",
+        "match": true,
+        "execution": {
+          "ok": true,
+          "formula": "=UNIQUE(CHOOSECOLS(FILTER(A2:E7,(B2:B7=\"short course\")*(D2:D7=\"7:51.80\")),3))",
+          "formula_local": "=ÚNICO(ESCOLHERCOLS(FILTRO(A2:E7;(B2:B7=\"short course\")*(D2:D7=\"7:51.80\"));3))",
+          "error": null,
+          "sheet": "train_2-16209355-1",
+          "cell": "AZ1",
+          "engine": "Microsoft Excel"
+        },
+        "execution_ok": true,
+        "turns": [
+          {
+            "generated_tokens": 84,
+            "generation_seconds": 2.9062209129333496,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 978
+          },
+          {
+            "generated_tokens": 84,
+            "generation_seconds": 3.0170912742614746,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 1090
+          },
+          {
+            "generated_tokens": 39,
+            "generation_seconds": 2.002199172973633,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 1326
+          }
+        ],
+        "elapsed_seconds": 22.908764599999813
+      }
+    },
+    {
+      "id": "nl2f-test-000008",
+      "expected": "=MAXIFS(C2:C7,A2:A7,\"100m freestyle\")",
+      "without_tools": {
+        "tool_calls": 0,
+        "predicted": "=MAXIFS(C2:C7,A2:A7,\"100m Freestyle\")",
+        "match": true,
+        "execution": {
+          "ok": true,
+          "formula": "=MAXIFS(C2:C7,A2:A7,\"100m Freestyle\")",
+          "formula_local": "=MÁXIMOSES(C2:C7;A2:A7;\"100m Freestyle\")",
+          "error": null,
+          "sheet": "train_2-16209355-1",
+          "cell": "AZ1",
+          "engine": "Microsoft Excel"
+        },
+        "execution_ok": true,
+        "turns": [
+          {
+            "generated_tokens": 20,
+            "generation_seconds": 0.5662455558776855,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 368
+          }
+        ],
+        "elapsed_seconds": 5.619026500000473
+      },
+      "with_tools": {
+        "tools_used": true,
+        "tool_calls": 2,
+        "tool_rounds": 3,
+        "predicted": "=UNIQUE(CHOOSECOLS(FILTER(A2:E7,A2:A7=\\\"100m freestyle\\\"),3))",
+        "match": false,
+        "execution": {
+          "ok": false,
+          "formula": "=UNIQUE(CHOOSECOLS(FILTER(A2:E7,A2:A7=\\\"100m freestyle\\\"),3))",
+          "formula_local": null,
+          "error": "A sintaxe da fórmula não é aceita.",
+          "sheet": "train_2-16209355-1",
+          "cell": "AZ1",
+          "engine": "Microsoft Excel"
+        },
+        "execution_ok": false,
+        "turns": [
+          {
+            "generated_tokens": 73,
+            "generation_seconds": 2.5740480422973633,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 975
+          },
+          {
+            "generated_tokens": 73,
+            "generation_seconds": 2.68011212348938,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 1076
+          },
+          {
+            "generated_tokens": 29,
+            "generation_seconds": 1.6617193222045898,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 1280
+          }
+        ],
+        "elapsed_seconds": 20.581836199999998
+      }
+    },
+    {
+      "id": "nl2f-test-000009",
+      "expected": "=UNIQUE(CHOOSECOLS(FILTER(A2:F13,D2:D13=\"ny islanders\"),1))",
+      "without_tools": {
+        "tool_calls": 0,
+        "predicted": "=UNIQUE(CHOOSECOLS(FILTER(A2:F13,D2:D13=\"ny islanders\"),1))",
+        "match": true,
+        "execution": {
+          "ok": true,
+          "formula": "=UNIQUE(CHOOSECOLS(FILTER(A2:F13,D2:D13=\"ny islanders\"),1))",
+          "formula_local": "=ÚNICO(ESCOLHERCOLS(FILTRO(A2:F13;D2:D13=\"ny islanders\");1))",
+          "error": null,
+          "sheet": "train_2-17301013-6",
+          "cell": "AZ1",
+          "engine": "Microsoft Excel"
+        },
+        "execution_ok": true,
+        "turns": [
+          {
+            "generated_tokens": 27,
+            "generation_seconds": 0.8108072280883789,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 473
+          }
+        ],
+        "elapsed_seconds": 7.262676399999691
+      },
+      "with_tools": {
+        "tools_used": true,
+        "tool_calls": 1,
+        "tool_rounds": 2,
+        "predicted": "=UNIQUE(CHOOSECOLS(FILTER(A2:F13,D2:D13=\"ny islanders\"),1))",
+        "match": true,
+        "execution": {
+          "ok": true,
+          "formula": "=UNIQUE(CHOOSECOLS(FILTER(A2:F13,D2:D13=\"ny islanders\"),1))",
+          "formula_local": "=ÚNICO(ESCOLHERCOLS(FILTRO(A2:F13;D2:D13=\"ny islanders\");1))",
+          "error": null,
+          "sheet": "train_2-17301013-6",
+          "cell": "AZ1",
+          "engine": "Microsoft Excel"
+        },
+        "execution_ok": true,
+        "turns": [
+          {
+            "generated_tokens": 72,
+            "generation_seconds": 2.6462295055389404,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 1080
+          },
+          {
+            "generated_tokens": 27,
+            "generation_seconds": 1.6115124225616455,
+            "generation_mode": "accelerated",
+            "prompt_tokens": 1278
+          }
+        ],
+        "elapsed_seconds": 19.32401469999968
+      }
+    }
+  ],
+  "without_tools": {
+    "correct": 10,
+    "accuracy": 1.0,
+    "execution_ok": 9,
+    "tool_calls": 0,
+    "examples_using_tools": 0
+  },
+  "with_tools": {
+    "correct": 6,
+    "accuracy": 0.6,
+    "execution_ok": 6,
+    "tool_calls": 17,
+    "examples_using_tools": 10
+  },
+  "comparison": {
+    "delta_pp": -40.0,
+    "gained": 0,
+    "lost": 4
+  },
+  "environment": {
+    "model_snapshot": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.17.0",
+    "peft": "0.21.0",
+    "accelerate": "1.15.0",
+    "bitsandbytes": "0.50.2"
+  }
+}

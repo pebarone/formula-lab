@@ -22,4 +22,4 @@ Altere `pyproject.toml`, execute `uv lock` e teste a instalação em outro ambie
 
 ## Publicação
 
-Não envie `runs/`, arquivos de credenciais, planilhas pessoais, pesos, ambientes virtuais nem dados brutos ou canônicos. A publicação inicial usa um histórico limpo porque o histórico de desenvolvimento local continha dados de terceiros. A documentação da aplicação deve permanecer em português; identificadores de API, trechos de código e licenças originais de terceiros podem conservar seu idioma.
+Não envie `runs/`, arquivos de credenciais, planilhas pessoais, pesos, ambientes virtuais nem dados brutos ou canônicos. Para publicar resultados autorizados, use `tools.exportar_resultados`, confira a cópia em `resultados/` e escreva uma análise que separe observação, hipótese e limitação. O exportador não publica conversas nem modifica os originais. A publicação inicial usa um histórico limpo porque o histórico de desenvolvimento local continha dados de terceiros. A documentação da aplicação deve permanecer em português; identificadores de API, registros de medições, trechos de código e licenças originais de terceiros podem conservar seu idioma.

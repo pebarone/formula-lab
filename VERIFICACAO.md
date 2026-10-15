@@ -14,7 +14,7 @@ O download do modelo foi executado com a revisão fixada. Os pesos já estavam n
 | --- | --- |
 | Testes Python do benchmark | 26 aprovados |
 | Testes Python do painel | 152 aprovados |
-| Testes Python das ferramentas | 20 aprovados |
+| Testes Python das ferramentas | 26 aprovados |
 | Suítes JavaScript da planilha, chat, sessões, comparação e treino | 5 aprovadas |
 | Compilação dos módulos com `compileall` | Aprovada |
 | Baseline com `--dry-run` após preparar os dados | 500 prompts montados |
@@ -23,6 +23,8 @@ O download do modelo foi executado com a revisão fixada. Os pesos já estavam n
 | Janela em 1366 × 768 e 390 × 844 | Centro horizontal e vertical exatos; conteúdo com rolagem |
 
 O teste do Excel usou dados sintéticos: E2 = 23,78, F2 = 38,89 e L2 = `=(E2+F2)/2`. O valor lido foi 31,335, sem erro de fórmula. Nenhuma planilha pessoal entrou nesse teste.
+
+A repetição do instalador também passou com `UV_OFFLINE=1` e `HF_HUB_OFFLINE=1`: runtime, uv, ambiente, 62 pacotes, dados e modelo foram reaproveitados. Os testes cobrem cache completo, cache ausente, download íntegro/corrompido e a exportação dos resultados sem conversas. O ZIP publicado no GitHub foi baixado pelo comando do README; seu PowerShell, servidor, estado inicial e CSS foram conferidos em uma cópia separada.
 
 ## Reproduzir
 

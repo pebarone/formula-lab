@@ -3,26 +3,11 @@
 import argparse
 import importlib
 import importlib.metadata
-import json
 from pathlib import Path
 
-from benchmark.run_baseline import MODEL_NAME, MODEL_REVISION
-from tools.preparar_ambiente import MODEL_FILES
+from tools.preparar_ambiente import check_model
 
 ROOT = Path(__file__).resolve().parents[1]
-
-
-def check_model():
-    from huggingface_hub import snapshot_download
-    snapshot = Path(snapshot_download(repo_id=MODEL_NAME, revision=MODEL_REVISION,
-                                      allow_patterns=MODEL_FILES, local_files_only=True))
-    index = snapshot / "model.safetensors.index.json"
-    weights = set(json.loads(index.read_text(encoding="utf-8"))["weight_map"].values()) if index.is_file() else {"model.safetensors"}
-    required = {"config.json", "tokenizer_config.json", "tokenizer.json", *weights}
-    missing = sorted(name for name in required if not (snapshot / name).is_file())
-    if missing:
-        raise ValueError("Faltam arquivos do modelo: " + ", ".join(missing))
-    return snapshot
 
 
 def verify(*, require_gpu=False, require_model=True, require_data=True):

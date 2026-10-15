@@ -1,0 +1,568 @@
+{
+  "evaluation_run": "20261009-165108-cfb7dc9c",
+  "adapter_run": "20261009-155912-5a240c2e",
+  "adapter_label": "10.000 exemplos + 1.000 exemplos de tool usage",
+  "completed": true,
+  "total": 500,
+  "metric": "normalized_exact_match",
+  "metrics": {
+    "without_tools": {
+      "correct": 375,
+      "accuracy": 0.75,
+      "execution_ok": 362,
+      "execution_ok_rate": 0.724,
+      "tool_calls": 0,
+      "examples_using_tools": 0,
+      "budget_exhausted": 0,
+      "missing_final_formula": 0,
+      "condition_errors": 0,
+      "tool_feedback_errors": 0,
+      "examples_with_tool_feedback_error": 0,
+      "invalid_tool_calls": 0,
+      "tool_names": {},
+      "tool_error_messages": {},
+      "generated_tokens": 14820,
+      "generation_seconds": 452.8613874912262,
+      "weighted_generation_tokens_per_second": 32.72524531645376,
+      "median_turn_tokens_per_second": 34.171123932845774,
+      "generation_turns": 500,
+      "generation_modes": {
+        "accelerated": 500
+      },
+      "condition_elapsed_seconds": 3647.1107358999434,
+      "mean_condition_elapsed_seconds": 7.294221471799887,
+      "median_condition_elapsed_seconds": 7.007740799999738,
+      "match_and_execution_ok": 279,
+      "match_but_execution_failed": 96,
+      "nonmatch_but_execution_ok": 83
+    },
+    "with_tools": {
+      "correct": 181,
+      "accuracy": 0.362,
+      "execution_ok": 398,
+      "execution_ok_rate": 0.796,
+      "tool_calls": 799,
+      "examples_using_tools": 500,
+      "budget_exhausted": 85,
+      "missing_final_formula": 89,
+      "condition_errors": 0,
+      "tool_feedback_errors": 350,
+      "examples_with_tool_feedback_error": 106,
+      "invalid_tool_calls": 37,
+      "tool_names": {
+        "excel_test_formula": 762,
+        "invalid_tool_call": 37
+      },
+      "tool_error_messages": {
+        "A sintaxe da fórmula não é aceita.": 29,
+        "#CALC!": 153,
+        "O Excel informou um resultado matricial, mas não foi possível ler toda a área derramada.": 27,
+        "#N/A": 26,
+        "Tool arguments must be valid JSON: Expecting ',' delimiter: line 1 column 147 (char 146)": 8,
+        "#DIV/0!": 8,
+        "A função SUMMARIZE não está na lista de funções nativas seguras.": 37,
+        "Tool arguments must be valid JSON: Expecting property name enclosed in double quotes: line 1 column 118 (char 117)": 1,
+        "Tool arguments must be valid JSON: Expecting ',' delimiter: line 1 column 148 (char 147)": 8,
+        "Excel tool failed: ExcelEngineError: (-2147352567, 'Exceção.', (0, None, None, None, 0, -2146827284), None)": 17,
+        "Tool arguments must be valid JSON: Expecting ',' delimiter: line 1 column 157 (char 156)": 4,
+        "Tool arguments contain unsupported fields.": 4,
+        "Tool arguments must be valid JSON: Expecting ',' delimiter: line 1 column 153 (char 152)": 4,
+        "#SPILL!": 2,
+        "A função HSTACK não está na lista de funções nativas seguras.": 8,
+        "#VALUE!": 1,
+        "A função DCOUNTX não está na lista de funções nativas seguras.": 1,
+        "Tool arguments must be valid JSON: Expecting ',' delimiter: line 1 column 151 (char 150)": 4,
+        "Tool arguments must be valid JSON: Expecting ',' delimiter: line 1 column 154 (char 153)": 4,
+        "Tool arguments must be valid JSON: Expecting ',' delimiter: line 1 column 163 (char 162)": 4
+      },
+      "generated_tokens": 60296,
+      "generation_seconds": 2683.885303735733,
+      "weighted_generation_tokens_per_second": 22.46593768968937,
+      "median_turn_tokens_per_second": 23.475460061520153,
+      "generation_turns": 1214,
+      "generation_modes": {
+        "accelerated": 1214
+      },
+      "condition_elapsed_seconds": 9687.449413100043,
+      "mean_condition_elapsed_seconds": 19.374898826200084,
+      "median_condition_elapsed_seconds": 18.050930100002006,
+      "match_and_execution_ok": 177,
+      "match_but_execution_failed": 4,
+      "nonmatch_but_execution_ok": 221
+    }
+  },
+  "comparison": {
+    "delta_pp": -38.800000000000004,
+    "gained": 3,
+    "lost": 197,
+    "both_correct": 178,
+    "neither_correct": 122,
+    "gain_ids": [
+      "nl2f-test-000070",
+      "nl2f-test-000084",
+      "nl2f-test-000263"
+    ],
+    "loss_ids": [
+      "nl2f-test-000002",
+      "nl2f-test-000003",
+      "nl2f-test-000006",
+      "nl2f-test-000007",
+      "nl2f-test-000010",
+      "nl2f-test-000016",
+      "nl2f-test-000017",
+      "nl2f-test-000018",
+      "nl2f-test-000019",
+      "nl2f-test-000020",
+      "nl2f-test-000021",
+      "nl2f-test-000026",
+      "nl2f-test-000029",
+      "nl2f-test-000036",
+      "nl2f-test-000037",
+      "nl2f-test-000043",
+      "nl2f-test-000044",
+      "nl2f-test-000045",
+      "nl2f-test-000047",
+      "nl2f-test-000048",
+      "nl2f-test-000049",
+      "nl2f-test-000050",
+      "nl2f-test-000052",
+      "nl2f-test-000053",
+      "nl2f-test-000054",
+      "nl2f-test-000055",
+      "nl2f-test-000057",
+      "nl2f-test-000059",
+      "nl2f-test-000062",
+      "nl2f-test-000063",
+      "nl2f-test-000067",
+      "nl2f-test-000068",
+      "nl2f-test-000069",
+      "nl2f-test-000071",
+      "nl2f-test-000073",
+      "nl2f-test-000076",
+      "nl2f-test-000077",
+      "nl2f-test-000080",
+      "nl2f-test-000081",
+      "nl2f-test-000082",
+      "nl2f-test-000087",
+      "nl2f-test-000092",
+      "nl2f-test-000103",
+      "nl2f-test-000106",
+      "nl2f-test-000107",
+      "nl2f-test-000111",
+      "nl2f-test-000112",
+      "nl2f-test-000114",
+      "nl2f-test-000120",
+      "nl2f-test-000121",
+      "nl2f-test-000124",
+      "nl2f-test-000129",
+      "nl2f-test-000130",
+      "nl2f-test-000131",
+      "nl2f-test-000133",
+      "nl2f-test-000134",
+      "nl2f-test-000142",
+      "nl2f-test-000146",
+      "nl2f-test-000148",
+      "nl2f-test-000157",
+      "nl2f-test-000158",
+      "nl2f-test-000163",
+      "nl2f-test-000165",
+      "nl2f-test-000167",
+      "nl2f-test-000170",
+      "nl2f-test-000175",
+      "nl2f-test-000177",
+      "nl2f-test-000178",
+      "nl2f-test-000179",
+      "nl2f-test-000180",
+      "nl2f-test-000181",
+      "nl2f-test-000182",
+      "nl2f-test-000183",
+      "nl2f-test-000184",
+      "nl2f-test-000191",
+      "nl2f-test-000194",
+      "nl2f-test-000196",
+      "nl2f-test-000199",
+      "nl2f-test-000204",
+      "nl2f-test-000205",
+      "nl2f-test-000208",
+      "nl2f-test-000210",
+      "nl2f-test-000211",
+      "nl2f-test-000220",
+      "nl2f-test-000221",
+      "nl2f-test-000223",
+      "nl2f-test-000225",
+      "nl2f-test-000230",
+      "nl2f-test-000232",
+      "nl2f-test-000233",
+      "nl2f-test-000236",
+      "nl2f-test-000238",
+      "nl2f-test-000242",
+      "nl2f-test-000245",
+      "nl2f-test-000246",
+      "nl2f-test-000252",
+      "nl2f-test-000253",
+      "nl2f-test-000254",
+      "nl2f-test-000255",
+      "nl2f-test-000256",
+      "nl2f-test-000257",
+      "nl2f-test-000258",
+      "nl2f-test-000261",
+      "nl2f-test-000267",
+      "nl2f-test-000268",
+      "nl2f-test-000269",
+      "nl2f-test-000270",
+      "nl2f-test-000278",
+      "nl2f-test-000279",
+      "nl2f-test-000283",
+      "nl2f-test-000285",
+      "nl2f-test-000287",
+      "nl2f-test-000292",
+      "nl2f-test-000293",
+      "nl2f-test-000296",
+      "nl2f-test-000297",
+      "nl2f-test-000298",
+      "nl2f-test-000301",
+      "nl2f-test-000312",
+      "nl2f-test-000320",
+      "nl2f-test-000321",
+      "nl2f-test-000323",
+      "nl2f-test-000325",
+      "nl2f-test-000327",
+      "nl2f-test-000328",
+      "nl2f-test-000329",
+      "nl2f-test-000331",
+      "nl2f-test-000340",
+      "nl2f-test-000342",
+      "nl2f-test-000345",
+      "nl2f-test-000346",
+      "nl2f-test-000356",
+      "nl2f-test-000357",
+      "nl2f-test-000359",
+      "nl2f-test-000362",
+      "nl2f-test-000367",
+      "nl2f-test-000368",
+      "nl2f-test-000370",
+      "nl2f-test-000371",
+      "nl2f-test-000372",
+      "nl2f-test-000374",
+      "nl2f-test-000376",
+      "nl2f-test-000379",
+      "nl2f-test-000384",
+      "nl2f-test-000391",
+      "nl2f-test-000392",
+      "nl2f-test-000393",
+      "nl2f-test-000396",
+      "nl2f-test-000397",
+      "nl2f-test-000399",
+      "nl2f-test-000400",
+      "nl2f-test-000401",
+      "nl2f-test-000403",
+      "nl2f-test-000404",
+      "nl2f-test-000408",
+      "nl2f-test-000410",
+      "nl2f-test-000413",
+      "nl2f-test-000414",
+      "nl2f-test-000415",
+      "nl2f-test-000419",
+      "nl2f-test-000420",
+      "nl2f-test-000427",
+      "nl2f-test-000428",
+      "nl2f-test-000430",
+      "nl2f-test-000432",
+      "nl2f-test-000433",
+      "nl2f-test-000434",
+      "nl2f-test-000436",
+      "nl2f-test-000437",
+      "nl2f-test-000438",
+      "nl2f-test-000442",
+      "nl2f-test-000444",
+      "nl2f-test-000445",
+      "nl2f-test-000447",
+      "nl2f-test-000452",
+      "nl2f-test-000455",
+      "nl2f-test-000456",
+      "nl2f-test-000457",
+      "nl2f-test-000458",
+      "nl2f-test-000459",
+      "nl2f-test-000460",
+      "nl2f-test-000463",
+      "nl2f-test-000471",
+      "nl2f-test-000473",
+      "nl2f-test-000474",
+      "nl2f-test-000475",
+      "nl2f-test-000476",
+      "nl2f-test-000477",
+      "nl2f-test-000480",
+      "nl2f-test-000481",
+      "nl2f-test-000486",
+      "nl2f-test-000490",
+      "nl2f-test-000492",
+      "nl2f-test-000493",
+      "nl2f-test-000495",
+      "nl2f-test-000496",
+      "nl2f-test-000499"
+    ],
+    "loss_partition": {
+      "final_formula_nonmatch_execution_ok": 126,
+      "budget_without_final_formula": 62,
+      "final_formula_escaped_quotes_execution_failed": 5,
+      "other_final_failure": 4
+    }
+  },
+  "setup_errors": 0,
+  "integrity": {
+    "unique_ordered_canonical_ids": true,
+    "raw_report_matches_jsonl": true,
+    "scores_recomputed": true,
+    "source_and_harness_hashes_unchanged": true,
+    "identity": {
+      "adapter_run": "20261009-155912-5a240c2e",
+      "adapter_label": "10.000 exemplos + 1.000 exemplos de tool usage",
+      "adapter_sha256": "a3bf020acf9eba973e8d82ac6a8aaa267c2542eca5bc6d5108b1168a50660180",
+      "selection_sha256": "1239cd4ba5b51eedda1aac08778dd85d2024ab687b3a643936aebda6774e1c5a",
+      "training_request_sha256": "0771b996f264694a2513689f1b4d8541eac346323a1f859ec4043a848ad6331c",
+      "canonical_test_sha256": "410507e591bfa4842ba9f6f894bdaf0e1e23c5b487c48a55378b7a60d7fed3b9",
+      "count": 500,
+      "max_tool_calls": 4,
+      "paired_conditions": [
+        "without_tools",
+        "with_tools"
+      ],
+      "notes": [
+        "Same saved adapter and canonical test inputs for both conditions.",
+        "Generation budgets differ: 128 tokens without tools vs four rounds of up to 512 tokens with tools.",
+        "Historical 79.2% used an earlier system prompt; this run does not isolate the effect of tool-use training."
+      ]
+    }
+  },
+  "generation": {
+    "do_sample": false,
+    "without_tools_max_new_tokens": 128,
+    "with_tools_max_new_tokens_per_turn": 512,
+    "max_tool_rounds": 4
+  },
+  "memory": {
+    "gpu_budget_gb": 6.4091796875,
+    "gpu_total_gb": 7.99560546875,
+    "vram_gb": 2.853482723236084,
+    "vram_reserved_gb": 3.494140625,
+    "vram_peak_gb": 4.432042598724365,
+    "vram_peak_reserved_gb": 6.27734375
+  },
+  "memory_point_sample": {
+    "captured_at": "2026-10-09T17:06:28.3575473-03:00",
+    "process_id": 21852,
+    "phase": "paired_500_evaluation",
+    "note": "Point-in-time Windows GPU counters; not a peak measurement",
+    "samples": [
+      {
+        "instance": "pid_21852_luid_0x00000000_0x00010600_phys_0",
+        "counter": "shared usage",
+        "bytes": 81788928
+      },
+      {
+        "instance": "pid_21852_luid_0x00000000_0x00010600_phys_0",
+        "counter": "dedicated usage",
+        "bytes": 3335430144
+      }
+    ]
+  },
+  "started_at": "2026-10-09T16:51:08.937578-03:00",
+  "ended_at": "2026-10-09T20:53:14.017060-03:00",
+  "wall_seconds": 14525.079481124878,
+  "gains": [
+    {
+      "id": "nl2f-test-000070",
+      "expected": "=UNIQUE(CHOOSECOLS(FILTER(A2:E20,B2:B20=\"watford\"),1))",
+      "without_tools": {
+        "predicted": "=UNIQUE(CHOOSECOLS(FILTER(A2:E20,(B2:B20=\"watford\")*(A2:A20=\"18 september 2007 – 19:45\")),4))",
+        "match": false,
+        "execution_ok": false
+      },
+      "with_tools": {
+        "predicted": "=UNIQUE(CHOOSECOLS(FILTER(A2:E20,B2:B20=\"Watford\"),1))",
+        "match": true,
+        "execution_ok": true,
+        "budget_exhausted": false,
+        "tool_calls": 1,
+        "errors": []
+      }
+    },
+    {
+      "id": "nl2f-test-000084",
+      "expected": "=MAXIFS(A2:A7,C2:C7,\"3rd\")",
+      "without_tools": {
+        "predicted": "=UNIQUE(CHOOSECOLS(FILTER(A2:E7,C2:C7=\"3rd\"),1))",
+        "match": false,
+        "execution_ok": true
+      },
+      "with_tools": {
+        "predicted": "=MAXIFS(A2:A7,C2:C7,\"3rd\")",
+        "match": true,
+        "execution_ok": true,
+        "budget_exhausted": false,
+        "tool_calls": 1,
+        "errors": []
+      }
+    },
+    {
+      "id": "nl2f-test-000263",
+      "expected": "=FILTER(B2:B17,H2:H17=\"UCLA\")",
+      "without_tools": {
+        "predicted": "=UNIQUE(CHOOSECOLS(FILTER(A2:I17,H2:H17=\"ucla\"),2))",
+        "match": false,
+        "execution_ok": false
+      },
+      "with_tools": {
+        "predicted": "=FILTER(B2:B17,H2:H17=\"UCLA\")",
+        "match": true,
+        "execution_ok": false,
+        "budget_exhausted": false,
+        "tool_calls": 1,
+        "errors": []
+      }
+    }
+  ],
+  "selected_losses": [
+    {
+      "id": "nl2f-test-000002",
+      "expected": "=ROWS(UNIQUE(FILTER(C2:C9, F2:F9=\"August3,2010\")))",
+      "without_tools": {
+        "predicted": "=ROWS(UNIQUE(FILTER(C2:C9, F2:F9=\"August3,2010\")))",
+        "match": true,
+        "execution_ok": true
+      },
+      "with_tools": {
+        "predicted": "=COUNTIF(F2:F9,\"August3,2010\")",
+        "match": false,
+        "execution_ok": true,
+        "budget_exhausted": false,
+        "tool_calls": 1,
+        "errors": []
+      }
+    },
+    {
+      "id": "nl2f-test-000006",
+      "expected": "=UNIQUE(CHOOSECOLS(FILTER(A2:E7,(B2:B7=\"short course\")*(C2:C7=2010)),1))",
+      "without_tools": {
+        "predicted": "=UNIQUE(CHOOSECOLS(FILTER(A2:E7,(B2:B7=\"short course\")*(C2:C7=2010)),1))",
+        "match": true,
+        "execution_ok": true
+      },
+      "with_tools": {
+        "predicted": "I reached the Excel tool-round limit before I could produce a final answer. Check the workbook for any completed changes.",
+        "match": false,
+        "execution_ok": false,
+        "budget_exhausted": true,
+        "tool_calls": 4,
+        "errors": [
+          "A sintaxe da fórmula não é aceita.",
+          "A sintaxe da fórmula não é aceita.",
+          "A sintaxe da fórmula não é aceita.",
+          "A sintaxe da fórmula não é aceita."
+        ]
+      }
+    },
+    {
+      "id": "nl2f-test-000017",
+      "expected": "=AVERAGE(FILTER(C2:C7, (B2:B7=\"rayo vallecano\")*(E2:E7<12)))",
+      "without_tools": {
+        "predicted": "=AVERAGE(FILTER(C2:C7, (B2:B7=\"rayo vallecano\")*(E2:E7<12)))",
+        "match": true,
+        "execution_ok": false
+      },
+      "with_tools": {
+        "predicted": "I reached the Excel tool-round limit before I could produce a final answer. Check the workbook for any completed changes.",
+        "match": false,
+        "execution_ok": false,
+        "budget_exhausted": true,
+        "tool_calls": 4,
+        "errors": [
+          "#CALC!",
+          "#CALC!",
+          "#CALC!",
+          "#CALC!"
+        ]
+      }
+    },
+    {
+      "id": "nl2f-test-000020",
+      "expected": "=LET(query1,LET(query1,FILTER(A2:E19,A2:A19=\"pointe-verte\"),SUMMARIZE(CHOOSECOLS(query1,2),SUMX(CHOOSECOLS(query1,4)))),FILTER(query1,CHOOSECOLS(query1,2)<1137))",
+      "without_tools": {
+        "predicted": "=LET(query1,LET(query1,FILTER(A2:E19,A2:A19=\"pointe-verte\"),SUMMARIZE(CHOOSECOLS(query1,2),SUMX(CHOOSECOLS(query1,4)))),FILTER(query1,CHOOSECOLS(query1,2)<1137))",
+        "match": true,
+        "execution_ok": false
+      },
+      "with_tools": {
+        "predicted": "=IF(AND(A2=\"Pointe-Verte\",D2<1137),\"Yes\",\"No\")",
+        "match": false,
+        "execution_ok": true,
+        "budget_exhausted": false,
+        "tool_calls": 1,
+        "errors": []
+      }
+    },
+    {
+      "id": "nl2f-test-000021",
+      "expected": "=SUM(FILTER(C2:C19, (B2:B19=\"village\")*(A2:A19=\"paquetville\")*(D2:D19>706)))",
+      "without_tools": {
+        "predicted": "=SUM(FILTER(C2:C19, (B2:B19=\"village\")*(A2:A19=\"paquetville\")*(D2:D19>706)))",
+        "match": true,
+        "execution_ok": false
+      },
+      "with_tools": {
+        "predicted": "I reached the Excel tool-round limit before I could produce a final answer. Check the workbook for any completed changes.",
+        "match": false,
+        "execution_ok": false,
+        "budget_exhausted": true,
+        "tool_calls": 4,
+        "errors": []
+      }
+    },
+    {
+      "id": "nl2f-test-000050",
+      "expected": "=UNIQUE(CHOOSECOLS(FILTER(A2:G7,B2:B7=\"8.13 (61)\"),5))",
+      "without_tools": {
+        "predicted": "=UNIQUE(CHOOSECOLS(FILTER(A2:G7,B2:B7=\"8.13 (61)\"),5))",
+        "match": true,
+        "execution_ok": true
+      },
+      "with_tools": {
+        "predicted": "I reached the Excel tool-round limit before I could produce a final answer. Check the workbook for any completed changes.",
+        "match": false,
+        "execution_ok": false,
+        "budget_exhausted": true,
+        "tool_calls": 4,
+        "errors": [
+          "Tool arguments must be valid JSON: Expecting ',' delimiter: line 1 column 147 (char 146)",
+          "Tool arguments must be valid JSON: Expecting ',' delimiter: line 1 column 147 (char 146)",
+          "Tool arguments must be valid JSON: Expecting ',' delimiter: line 1 column 147 (char 146)",
+          "Tool arguments must be valid JSON: Expecting ',' delimiter: line 1 column 147 (char 146)"
+        ]
+      }
+    },
+    {
+      "id": "nl2f-test-000052",
+      "expected": "=UNIQUE(CHOOSECOLS(FILTER(A2:G7,D2:D7=\"14.15 (99)\"),2))",
+      "without_tools": {
+        "predicted": "=UNIQUE(CHOOSECOLS(FILTER(A2:G7,D2:D7=\"14.15 (99)\"),2))",
+        "match": true,
+        "execution_ok": true
+      },
+      "with_tools": {
+        "predicted": "=UNIQUE(CHOOSECOLS(FILTER(A2:G7,D2:D7=\\\"14.15 (99)\\\"),2))",
+        "match": false,
+        "execution_ok": false,
+        "budget_exhausted": false,
+        "tool_calls": 1,
+        "errors": []
+      }
+    }
+  ],
+  "limitations": [
+    "Exact formula match is not semantic equivalence.",
+    "Only literal visible context cells are materialized.",
+    "Generation budgets and tool-mode instructions differ.",
+    "Historical 79.2% uses an older system prompt.",
+    "Shared GPU memory counter is one point sample, not a peak."
+  ]
+}

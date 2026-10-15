@@ -1,0 +1,42 @@
+{
+  "adapter_run": "20260929-091722-2a7aedca",
+  "optimizer_restarted": true,
+  "metrics": {
+    "train_runtime": 6662.2482,
+    "train_samples_per_second": 0.75,
+    "train_steps_per_second": 0.047,
+    "train_loss": 0.07320051766432131,
+    "epoch": 1.0
+  },
+  "best_eval_loss": 0.048069193959236145,
+  "best_checkpoint": ".\\runs\\20260929-130348-d1f5077b\\checkpoints\\checkpoint-313",
+  "effective_batch_size": 16,
+  "selection": {
+    "train": {
+      "selected": 5000,
+      "suspect_excluded": 0,
+      "too_long_skipped": 130,
+      "levels": {
+        "medium": 2593,
+        "easy": 1836,
+        "hard": 571
+      },
+      "tables": 4126,
+      "max_tokens": 1024,
+      "supervised_tokens": 156282
+    },
+    "validation": {
+      "selected": 4947,
+      "suspect_excluded": 0,
+      "too_long_skipped": 136,
+      "levels": {
+        "medium": 2639,
+        "easy": 1777,
+        "hard": 531
+      },
+      "tables": 1507,
+      "max_tokens": 1023,
+      "supervised_tokens": 155864
+    }
+  }
+}

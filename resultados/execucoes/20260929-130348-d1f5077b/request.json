@@ -1,0 +1,19 @@
+{
+  "kind": "train",
+  "config": {
+    "train_samples": 5000,
+    "validation_samples": 4947,
+    "epochs": 1,
+    "learning_rate": 0.0002,
+    "batch_size": 1,
+    "gradient_accumulation": 16,
+    "max_length": 1024,
+    "lora_r": 8,
+    "lora_alpha": 16,
+    "seed": 42,
+    "logging_steps": 5,
+    "exclude_suspect": false
+  },
+  "adapter_run": "20260929-091722-2a7aedca",
+  "created_at": 1790697828.3352907
+}

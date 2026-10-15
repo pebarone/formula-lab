@@ -1,0 +1,37 @@
+{
+  "worker_comparable": true,
+  "item_count": 500,
+  "total": 500,
+  "correct": 3,
+  "accuracy": 0.006,
+  "metrics_finite": true,
+  "data_sha256_unchanged": "410507e591bfa4842ba9f6f894bdaf0e1e23c5b487c48a55378b7a60d7fed3b9",
+  "evaluation_identity_unchanged": true,
+  "batch_size": 1,
+  "memory": {
+    "gpu_budget_gb": 6.4091796875,
+    "gpu_total_gb": 7.99560546875,
+    "vram_gb": 2.5024709701538086,
+    "vram_reserved_gb": 5.9296875,
+    "vram_peak_gb": 3.2853922843933105,
+    "vram_peak_reserved_gb": 6.396484375
+  },
+  "duration_seconds": 1174.0200453000007,
+  "baseline_path": ".\\benchmark\\results\\baseline.json",
+  "baseline_sha256": "8e7b94640474cde5613ed276ef5d3cbdede1c2efc525c569bca3eafd43ef4b5b",
+  "legacy_backups": {
+    "benchmark\\results\\baseline.json": "benchmark\\results\\baseline_legacy_20261001T020305Z.json",
+    "benchmark\\results\\baseline_items.jsonl": "benchmark\\results\\baseline_items_legacy_20261001T020305Z.jsonl",
+    "benchmark\\results\\baseline_items_manifest.json": "benchmark\\results\\baseline_items_manifest_legacy_20261001T020305Z.json"
+  },
+  "promoted_at": "2026-10-01T02:23:18.232195+00:00",
+  "report_sha256": "8e7b94640474cde5613ed276ef5d3cbdede1c2efc525c569bca3eafd43ef4b5b",
+  "windows_gpu_observations": [
+    {
+      "path": ".\\runs\\baseline-refresh-20261001T020305Z\\windows_gpu_sample.json",
+      "sampled_at_utc": "2026-10-01T02:11:46.0041427Z",
+      "source": "Win32_PerfFormattedData_GPUPerformanceCounters_GPUProcessMemory",
+      "note": "Amostra pontual do processo; não representa o pico nem outros aplicativos."
+    }
+  ]
+}

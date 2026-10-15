@@ -1,0 +1,7 @@
+{
+  "status": "failed",
+  "updated_at": 1791571493.9044476,
+  "started_at": 1791571470.0366552,
+  "error": "Comprimentos de tokens do manifesto não correspondem ao tokenizer Qwen local.",
+  "ended_at": 1791571493.9044476
+}

@@ -1,0 +1,76 @@
+{
+  "adapter_run": "20260929-183918-1387e297",
+  "optimizer_restarted": true,
+  "metrics": {
+    "train_runtime": 2615.9429,
+    "train_samples_per_second": 0.459,
+    "train_steps_per_second": 0.029,
+    "train_loss": 0.03234916344905893,
+    "epoch": 1.0
+  },
+  "best_eval_loss": 0.0034590912982821465,
+  "best_checkpoint": ".\\runs\\20261009-155912-5a240c2e\\checkpoints\\checkpoint-75",
+  "effective_batch_size": 16,
+  "memory": {
+    "gpu_budget_gb": 6.4091796875,
+    "gpu_total_gb": 7.99560546875,
+    "vram_gb": 3.420055866241455,
+    "vram_reserved_gb": 5.3359375,
+    "vram_peak_gb": 5.050108432769775,
+    "vram_peak_reserved_gb": 5.3359375
+  },
+  "selection": {
+    "train": {
+      "selected": 1200,
+      "tool_usage": {
+        "selected": 1000,
+        "categories": {
+          "propose_test_final": 500,
+          "error_repair": 300,
+          "read_then_test": 100,
+          "authorized_write_test_read": 100
+        },
+        "max_tokens": 1409,
+        "total_tokens": 1016836,
+        "supervised_tokens": 84812,
+        "too_long_skipped": 0
+      },
+      "rehearsal": {
+        "selected": 200,
+        "source": "parent_adapter_train_ids",
+        "too_long_skipped": 0,
+        "max_tokens": 954,
+        "total_tokens": 98387,
+        "supervised_tokens": 6311
+      },
+      "categories": {
+        "tool_usage": {
+          "propose_test_final": 500,
+          "error_repair": 300,
+          "read_then_test": 100,
+          "authorized_write_test_read": 100
+        },
+        "rehearsal": {
+          "canonical_formula": 200
+        }
+      },
+      "max_tokens": 1409,
+      "total_tokens": 1115223,
+      "supervised_tokens": 91123,
+      "too_long_skipped": 0
+    },
+    "validation": {
+      "selected": 100,
+      "categories": {
+        "propose_test_final": 50,
+        "error_repair": 30,
+        "read_then_test": 10,
+        "authorized_write_test_read": 10
+      },
+      "max_tokens": 1378,
+      "total_tokens": 100854,
+      "supervised_tokens": 7966,
+      "too_long_skipped": 0
+    }
+  }
+}

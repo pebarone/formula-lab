@@ -1,0 +1,145 @@
+{
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "system_prompt": "You are an expert in Microsoft Excel formulas. Answer concisely and generate valid Excel formulas when requested.",
+  "prompt_fingerprint": "c69a839b135dbc1f10fe7b1bf63c4d32958c183bad9bcd15eea4676fe11c1b10",
+  "do_sample": false,
+  "max_new_tokens": 128,
+  "data": "selected held-out validation rows; official test not used",
+  "total": 16,
+  "correct": 0,
+  "accuracy": 0.0,
+  "items": [
+    {
+      "id": "nl2f-validation-003775",
+      "expected": "=UNIQUE(CHOOSECOLS(FILTER(A2:G7,D2:D7=\"11.15 (81)\"),5))",
+      "predicted": "=FILTER(E2:E7, D2:D7=\"11.15 (81)\")",
+      "predicted_formula": "=FILTER(E2:E7, D2:D7=\"11.15 (81)\")",
+      "match": false
+    },
+    {
+      "id": "nl2f-validation-004800",
+      "expected": "=MAXIFS(E2:E8,A2:A8,\"19 february 2005\")",
+      "predicted": "=MAX(IF((A2:A1000)=DATE(2005,2,19),E2:E1000))",
+      "predicted_formula": "=MAX(IF((A2:A1000)=DATE(2005,2,19),E2:E1000))",
+      "match": false
+    },
+    {
+      "id": "nl2f-validation-000655",
+      "expected": "=UNIQUE(CHOOSECOLS(FILTER(A2:E10,A2:A10=\"hyperion\"),3))",
+      "predicted": "=INDEX(A:A, MATCH(\"Hyperion\", A:A, 0))",
+      "predicted_formula": "=INDEX(A:A, MATCH(\"Hyperion\", A:A, 0))",
+      "match": false
+    },
+    {
+      "id": "nl2f-validation-003908",
+      "expected": "=UNIQUE(CHOOSECOLS(FILTER(A2:G10,A2:A10=\"25th\"),4))",
+      "predicted": "=INDEX(D:D, MATCH(\"25th\", A:A, 0))",
+      "predicted_formula": "=INDEX(D:D, MATCH(\"25th\", A:A, 0))",
+      "match": false
+    },
+    {
+      "id": "nl2f-validation-002833",
+      "expected": "=UNIQUE(CHOOSECOLS(FILTER(A2:F7,B2:B7=\"January 9, 2000\"),3))",
+      "predicted": "=INDEX(C2:C7, MATCH(\"January 9, 2000\", B2:B7, 0))",
+      "predicted_formula": "=INDEX(C2:C7, MATCH(\"January 9, 2000\", B2:B7, 0))",
+      "match": false
+    },
+    {
+      "id": "nl2f-validation-003066",
+      "expected": "=SUM(FILTER(B2:B6, (G2:G6=\"roy\")*(F2:F6=\"sweazy\")))",
+      "predicted": "=COUNTIF(G:G, \"SWEAZY\") * COUNTIF(F:F, \"ROY\")",
+      "predicted_formula": "=COUNTIF(G:G, \"SWEAZY\") * COUNTIF(F:F, \"ROY\")",
+      "match": false
+    },
+    {
+      "id": "nl2f-validation-003926",
+      "expected": "=UNIQUE(CHOOSECOLS(FILTER(A2:G6,F2:F6=17),5))",
+      "predicted": "=FILTER(E2:E100, F2:F100 = 17)",
+      "predicted_formula": "=FILTER(E2:E100, F2:F100 = 17)",
+      "match": false
+    },
+    {
+      "id": "nl2f-validation-002322",
+      "expected": "=UNIQUE(CHOOSECOLS(FILTER(A2:H8,D2:D8=\"6.9 (45)\"),5))",
+      "predicted": "=FILTER(E2:E100, D2:D100 = \"6.9 (45)\")",
+      "predicted_formula": "=FILTER(E2:E100, D2:D100 = \"6.9 (45)\")",
+      "match": false
+    },
+    {
+      "id": "nl2f-validation-002199",
+      "expected": "=SUM(FILTER(D2:D15, F2:F15=32))",
+      "predicted": "=SUMIF(D2:D16,\">0\",E2:E16) * (F2:F16=32) → Incorrect logic\n\nCorrect approach: We need to sum the \"Avg.\" (column D) where \"Long\" (column F) equals 32.\n\nCorrect Excel formula:\n\n=SUMIF(F2:F16,32,E2:E16)",
+      "predicted_formula": "=SUMIF(D2:D16,\">0\",E2:E16) * (F2:F16=32) → Incorrect logic",
+      "match": false
+    },
+    {
+      "id": "nl2f-validation-000111",
+      "expected": "=UNIQUE(CHOOSECOLS(FILTER(A2:E11,B2:B11=\"adam barclay\"),3))",
+      "predicted": "=INDEX(C:C, MATCH(\"Adam Barclay\", B:B, 0))",
+      "predicted_formula": "=INDEX(C:C, MATCH(\"Adam Barclay\", B:B, 0))",
+      "match": false
+    },
+    {
+      "id": "nl2f-validation-005077",
+      "expected": "=FILTER(F2:F7,C2:C7=\"71.1E\")",
+      "predicted": "=INDEX(F:F, MATCH(71.1, C:C, 0))",
+      "predicted_formula": "=INDEX(F:F, MATCH(71.1, C:C, 0))",
+      "match": false
+    },
+    {
+      "id": "nl2f-validation-000833",
+      "expected": "=UNIQUE(CHOOSECOLS(FILTER(A2:G7,A2:A7=\"hawthorn\"),5))",
+      "predicted": "=INDEX(E:E, MATCH(\"Hawthorn\", A:A, 0))",
+      "predicted_formula": "=INDEX(E:E, MATCH(\"Hawthorn\", A:A, 0))",
+      "match": false
+    },
+    {
+      "id": "nl2f-validation-001782",
+      "expected": "=SUM(FILTER(A2:A13, (F2:F13=\"stanford\")*(C2:C13<8)))",
+      "predicted": "=IFERROR(INDEX(A:A, MATCH(1, (C:C<8) * (F:F=\"Stanford\"), 0)), \"\")",
+      "predicted_formula": "=IFERROR(INDEX(A:A, MATCH(1, (C:C<8) * (F:F=\"Stanford\"), 0)), \"\")",
+      "match": false
+    },
+    {
+      "id": "nl2f-validation-001793",
+      "expected": "=UNIQUE(CHOOSECOLS(FILTER(A2:F9,D2:D9=\"Benicio del Toro\"),2))",
+      "predicted": "=INDEX(A2:A100, MATCH(\"Benicio del Toro\", E2:E100, 0))",
+      "predicted_formula": "=INDEX(A2:A100, MATCH(\"Benicio del Toro\", E2:E100, 0))",
+      "match": false
+    },
+    {
+      "id": "nl2f-validation-000875",
+      "expected": "=UNIQUE(CHOOSECOLS(FILTER(A2:E15,C2:C15=\"choice tv: breakout star female\"),2))",
+      "predicted": "=VLOOKUP(\"Choice TV: Breakout Star Female\", test_2-12441518-6!$A$2:$E$15, 2, FALSE)",
+      "predicted_formula": "=VLOOKUP(\"Choice TV: Breakout Star Female\", test_2-12441518-6!$A$2:$E$15, 2, FALSE)",
+      "match": false
+    },
+    {
+      "id": "nl2f-validation-005045",
+      "expected": "=MAX(FILTER(B2:B6,A2:A6=\"xavier doherty (tasmania)\"))",
+      "predicted": "=MAX(IF(C2:C7=\"6.3\", C2:C7))",
+      "predicted_formula": "=MAX(IF(C2:C7=\"6.3\", C2:C7))",
+      "match": false
+    }
+  ],
+  "condition": "lr_5e_5",
+  "generation_seconds": 71.17964260000008,
+  "generation_examples_per_second": 0.22478337085665534,
+  "prompt_sizes": {
+    "examples": 16,
+    "input_tokens": 6512,
+    "max_input_tokens": 477
+  },
+  "gpu_memory": {
+    "gpu_budget_gb": 6.4091796875,
+    "gpu_total_gb": 7.99560546875,
+    "vram_gb": 2.5639944076538086,
+    "vram_reserved_gb": 2.826171875,
+    "vram_peak_gb": 2.735527515411377,
+    "vram_peak_reserved_gb": 2.826171875
+  },
+  "model_load_and_adapter_seconds": 10.83737519999977,
+  "learning_rate": 5e-05,
+  "eval_loss": 1.7554547786712646,
+  "delta_accuracy_vs_base_pp": 0.0
+}

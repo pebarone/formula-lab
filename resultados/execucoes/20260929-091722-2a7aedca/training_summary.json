@@ -1,0 +1,40 @@
+{
+  "metrics": {
+    "train_runtime": 2906.6638,
+    "train_samples_per_second": 0.344,
+    "train_steps_per_second": 0.022,
+    "train_loss": 0.36960911183130174,
+    "epoch": 1.0
+  },
+  "best_eval_loss": 0.12554721534252167,
+  "best_checkpoint": ".\\runs\\20260929-091722-2a7aedca\\checkpoints\\checkpoint-63",
+  "effective_batch_size": 16,
+  "selection": {
+    "train": {
+      "selected": 1000,
+      "suspect_excluded": 0,
+      "too_long_skipped": 23,
+      "levels": {
+        "medium": 521,
+        "easy": 368,
+        "hard": 111
+      },
+      "tables": 959,
+      "max_tokens": 1018,
+      "supervised_tokens": 31129
+    },
+    "validation": {
+      "selected": 500,
+      "suspect_excluded": 0,
+      "too_long_skipped": 11,
+      "levels": {
+        "medium": 267,
+        "easy": 179,
+        "hard": 54
+      },
+      "tables": 409,
+      "max_tokens": 1010,
+      "supervised_tokens": 15957
+    }
+  }
+}

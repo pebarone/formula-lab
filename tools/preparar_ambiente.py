@@ -61,8 +61,8 @@ def prepare_data(root=ROOT):
     root = Path(root)
     raw = root / "dataset/raw/nl2formula"
     for name, (size, digest) in DATA_FILES.items():
-        print(f"Conferindo dados: {name}", flush=True)
-        download_verified(f"https://raw.githubusercontent.com/timetub/NL2Formula/{DATA_REVISION}/dataset/{name}", raw / name, size, digest)
+        downloaded = download_verified(f"https://raw.githubusercontent.com/timetub/NL2Formula/{DATA_REVISION}/dataset/{name}", raw / name, size, digest)
+        print(f"[{'Baixado' if downloaded else 'Reutilizar'}] {name}: tamanho e SHA-256 conferidos.", flush=True)
     counts = {}
     for split, name in SPLIT_FILES.items():
         rows = iter_records(split, json.loads((raw / name).read_text(encoding="utf-8")))
@@ -76,9 +76,28 @@ def prepare_data(root=ROOT):
     return counts
 
 
+def check_model():
+    from huggingface_hub import snapshot_download
+    snapshot = Path(snapshot_download(repo_id=MODEL_NAME, revision=MODEL_REVISION,
+                                      allow_patterns=MODEL_FILES, local_files_only=True))
+    index = snapshot / "model.safetensors.index.json"
+    weights = set(json.loads(index.read_text(encoding="utf-8"))["weight_map"].values()) if index.is_file() else {"model.safetensors"}
+    required = {"config.json", "tokenizer_config.json", "tokenizer.json", *weights}
+    missing = sorted(name for name in required if not (snapshot / name).is_file())
+    if missing:
+        raise ValueError("Faltam arquivos do modelo: " + ", ".join(missing))
+    return snapshot
+
+
 def prepare_model():
     from huggingface_hub import snapshot_download
-    print(f"Baixando ou conferindo {MODEL_NAME}, revisão {MODEL_REVISION}.", flush=True)
+    try:
+        snapshot = check_model()
+    except (OSError, ValueError):
+        print(f"[Baixar] Cache do modelo ausente ou incompleto: {MODEL_NAME}, revisão {MODEL_REVISION}. Só os arquivos faltantes serão obtidos.", flush=True)
+    else:
+        print(f"[Reutilizar] Modelo e tokenizer completos no cache local: {MODEL_NAME} ({MODEL_REVISION}).", flush=True)
+        return snapshot
     return snapshot_download(repo_id=MODEL_NAME, revision=MODEL_REVISION, allow_patterns=MODEL_FILES)
 
 

@@ -2,6 +2,8 @@
 
 Painel local em HTML, CSS e JavaScript para preparar dados, treinar adaptadores QLoRA e avaliar o `Qwen/Qwen3-4B-Instruct-2507`. O servidor usa a biblioteca padrão do Python; não precisa de Node, npm, CDN ou serviços externos para funcionar.
 
+Os [resultados versionados](resultados/README.md) incluem parâmetros, curvas de loss e avaliações por ID. A [análise dos experimentos](resultados/ANALISE.md) explica cada resultado, as falhas observadas e os limites das comparações. Veja também as [capturas reais do painel](#telas-do-painel).
+
 ## Instalar do zero no Windows
 
 O instalador configura **Python 3.12, uv, PyTorch 2.11 com CUDA 12.8 e todas as dependências fixadas em `uv.lock`**. Também baixa os pesos da revisão usada pelo projeto e prepara os dados de treino, validação e os 500 testes. Não é necessário instalar Python, pip, Git, Node.js ou o CUDA Toolkit antes.
@@ -31,6 +33,25 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\configurar.ps1
 Se a pasta `formula-lab-main` já existir, entre nela e execute apenas as duas últimas linhas. O comando de expansão não sobrescreve um projeto existente. A primeira instalação pode demorar devido aos pesos e ao PyTorch; o progresso aparece no terminal. Os downloads de dados são conferidos por tamanho e SHA-256 e podem ser retomados executando o script novamente.
 
 O `uv` é obtido do [instalador oficial da Astral](https://docs.astral.sh/uv/reference/installer/) quando não estiver disponível e fica em `.tools/uv/`. O Python gerenciado fica no cache do uv e os pacotes do projeto ficam em `.venv/`. O script não altera a política permanente de execução nem o PATH do sistema. Se faltar o runtime do Visual C++, ele obtém o instalador oficial da Microsoft; o Windows pode solicitar permissão de administrador.
+
+### O que acontece se já estiver instalado
+
+É seguro executar o script novamente. Ele procura o runtime do Visual C++, o uv no PATH ou em `.tools/uv/`, um Python 3.12 compatível e o ambiente escolhido. O uv mantém os pacotes de `.venv` que já correspondem a `uv.lock`, instala somente os ausentes ou com versões diferentes e preserva pacotes extras. Os arquivos brutos do dataset são reutilizados quando tamanho e SHA-256 conferem; a conversão canônica é refeita. O modelo completo no cache é conferido e reutilizado sem consultar a rede.
+
+Python já instalado pode fornecer o interpretador do ambiente; pacotes globais de outros projetos não são alterados nem copiados para `.venv`. O isolamento evita conflitos. Uma versão incompatível de Python ou de um pacote não substitui a versão exigida pelo projeto.
+
+As mensagens deixam as decisões visíveis, por exemplo:
+
+```text
+[Reutilizar] Runtime do Visual C++ já encontrado; nenhuma instalação necessária.
+[Reutilizar] uv já encontrado no PATH: ...
+[Conferir] Ambiente existente em ...; pacotes compatíveis serão mantidos.
+Checked 62 packages in 4ms
+[Reutilizar] train.json: tamanho e SHA-256 conferidos.
+[Reutilizar] Modelo e tokenizer completos no cache local: Qwen/...
+```
+
+Quando faltar um componente, aparecerá `[Baixar]` ou `[Criar]`. A repetição completa foi testada com uv e Hugging Face em modo offline, sem reinstalar os pacotes que já correspondiam ao arquivo de versões.
 
 Alternativa para quem já possui Git:
 
@@ -62,9 +83,9 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\configurar.ps1 -Ambiente .
 
 ### Arquivos que não acompanham o GitHub
 
-Um clone novo começa com o modelo base e sem adaptadores treinados. Planilhas, conversas e adaptadores criados no computador ficam em `runs/`. Pesos ficam no cache do Hugging Face. Os dados NL2Formula são baixados diretamente da fonte e convertidos localmente, pois a fonte não declara uma licença única de redistribuição. Consulte [proveniência dos dados](dataset/README.md) e [componentes e arquivos locais](AVISOS.md).
+Um clone novo começa com o modelo base e sem pesos de adaptadores treinados. Os [resultados históricos publicados](resultados/README.md) podem ser consultados sem GPU, mas não são importados automaticamente para o histórico de novas execuções. Planilhas, conversas e adaptadores criados no computador ficam em `runs/`. Pesos ficam no cache do Hugging Face. Os dados NL2Formula são baixados diretamente da fonte e convertidos localmente, pois a fonte não declara uma licença única de redistribuição. Consulte [proveniência dos dados](dataset/README.md) e [componentes e arquivos locais](AVISOS.md).
 
-Os scripts históricos de experimentos e de treino de ferramentas podem exigir os adaptadores e manifestos de execuções citados nos relatórios. Esses artefatos locais não são distribuídos. Para começar em outro computador, use o **modelo base** ou treine um novo adaptador pelo painel.
+Os scripts históricos de experimentos e de treino de ferramentas podem exigir os pesos dos adaptadores citados nos relatórios. Os pesos não são distribuídos. Os parâmetros, manifestos e métricas disponíveis foram publicados em `resultados/`. Para começar em outro computador, use o **modelo base** ou treine um novo adaptador pelo painel.
 
 ## Abrir o painel
 
@@ -88,7 +109,7 @@ O treinamento inicia apenas ao clicar em seu botão. O teste oficial nunca é us
 
 Em **Comparação**, mudar **Modelo para avaliar** também mostra a avaliação concluída mais recente daquele modelo, sem iniciar uma nova execução. Se o adaptador ainda não tiver resultado, o painel informa isso e limpa as métricas anteriores. Para o modelo base, usa o baseline salvo quando não há uma avaliação posterior. **Ver respostas** no ponto de partida abre o baseline original; abrir uma avaliação pelo histórico mostra aquela execução e ajusta o seletor ao modelo correspondente.
 
-Nos experimentos locais, o baseline regenerado nos 500 testes obteve 3/500 (0,6%), com batch 1 e pico reservado de 6,396 GiB. Os resultados individuais históricos não acompanham o repositório público. Para gerar seu próprio baseline, siga [benchmark/README.md](benchmark/README.md). Consulte [medições e limites](training_efficiency.md).
+Nos experimentos locais, o baseline regenerado nos 500 testes obteve 3/500 (0,6%), com batch 1 e pico reservado de 6,396 GiB. A [cópia publicada do baseline](resultados/execucoes/baseline-refresh-20261001T020305Z/report.json) preserva as métricas e as respostas por ID. Para gerar seu próprio baseline, siga [benchmark/README.md](benchmark/README.md). Consulte [medições e limites](training_efficiency.md).
 
 ## Continuar um adaptador
 
@@ -261,3 +282,25 @@ Os testes unitários usam substitutos para CUDA, o modelo e o Excel. Não inicia
 Veja também [como contribuir](CONTRIBUTING.md). A integração contínua executa a instalação em Windows e as suítes Python e JavaScript sem baixar pesos ou dados e sem depender de GPU ou licença do Excel.
 
 Os resultados e os limites da validação desta instalação estão em [VERIFICACAO.md](VERIFICACAO.md).
+
+## Telas do painel
+
+Estas são capturas reais da instalação de desenvolvimento. Elas mostram execuções históricas; um clone novo consulta esses registros em [resultados/](resultados/README.md) e cria seu próprio histórico em `runs/`.
+
+### Curva de um treinamento concluído
+
+![Treinamento concluído com curva de loss e consumo de VRAM](docs/imagens/curva-treinamento.png)
+
+A captura mostra a continuação para ferramentas. A loss lateral é a última registrada, enquanto `training_summary.json` contém a média do treino. Os 12/12 são a validação sintética, não os 500 testes canônicos.
+
+### Avaliação com e sem ferramentas
+
+![Comparação nos 500 testes: 75% sem ferramentas e 36,2% com ferramentas](docs/imagens/comparacao-ferramentas.png)
+
+Os valores são os mesmos dos [arquivos publicados e da análise](resultados/ANALISE.md). Fórmula aceita pelo Excel e correspondência ao gabarito são medidas distintas.
+
+### Planilha em janela centralizada
+
+![Janela centralizada com grade editável e campo para pedir alterações à IA](docs/imagens/planilha-centralizada.png)
+
+A planilha desta captura contém somente dados sintéticos de verificação. A janela mantém rolagem e pode ser redimensionada no desktop.

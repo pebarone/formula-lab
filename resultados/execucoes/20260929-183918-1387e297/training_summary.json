@@ -1,0 +1,42 @@
+{
+  "adapter_run": null,
+  "optimizer_restarted": true,
+  "metrics": {
+    "train_runtime": 11330.4136,
+    "train_samples_per_second": 0.883,
+    "train_steps_per_second": 0.055,
+    "train_loss": 0.11047069154977798,
+    "epoch": 1.0
+  },
+  "best_eval_loss": 0.039405707269907,
+  "best_checkpoint": ".\\runs\\20260929-183918-1387e297\\checkpoints\\checkpoint-625",
+  "effective_batch_size": 16,
+  "selection": {
+    "train": {
+      "selected": 10000,
+      "suspect_excluded": 0,
+      "too_long_skipped": 262,
+      "levels": {
+        "medium": 5195,
+        "easy": 3666,
+        "hard": 1139
+      },
+      "tables": 7158,
+      "max_tokens": 1024,
+      "supervised_tokens": 311391
+    },
+    "validation": {
+      "selected": 4947,
+      "suspect_excluded": 0,
+      "too_long_skipped": 136,
+      "levels": {
+        "medium": 2639,
+        "easy": 1777,
+        "hard": 531
+      },
+      "tables": 1507,
+      "max_tokens": 1023,
+      "supervised_tokens": 155864
+    }
+  }
+}

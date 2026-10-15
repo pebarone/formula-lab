@@ -1,0 +1,460 @@
+{
+  "name": "training-pilot-20261001T003431Z-19016",
+  "status": "completed",
+  "created_at_utc": "2026-10-01T00:34:31.331497+00:00",
+  "model": {
+    "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+    "cached_snapshot_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "cached_snapshot_path": "[pasta do usuário]\\.cache\\huggingface\\hub\\models--Qwen--Qwen3-4B-Instruct-2507\\snapshots\\cdbee75f17c01a7cc42f958dc650907174af0554",
+    "config_sha256": "5beea1a4a34c62782bfb2f911c606741a3bab8f92d80a118fa053c28af12e8ba",
+    "weight_files": [
+      {
+        "name": "model-00001-of-00003.safetensors",
+        "size_bytes": 3957900840
+      },
+      {
+        "name": "model-00002-of-00003.safetensors",
+        "size_bytes": 3987450520
+      },
+      {
+        "name": "model-00003-of-00003.safetensors",
+        "size_bytes": 99630640
+      }
+    ],
+    "quantization": "NF4 with double quantization; bfloat16 compute",
+    "attention": "SDPA"
+  },
+  "environment": {
+    "python": "3.12.13",
+    "torch": "2.11.0+cu128",
+    "torch_cuda_build": "12.8",
+    "packages": {
+      "transformers": "5.17.0",
+      "peft": "0.21.0",
+      "accelerate": "1.15.0",
+      "bitsandbytes": "0.50.2",
+      "datasets": "5.0.1"
+    }
+  },
+  "settings_common": {
+    "train_samples": 32,
+    "validation_samples": 16,
+    "epochs": 1,
+    "learning_rate": 0.0001,
+    "batch_size": 1,
+    "gradient_accumulation": 4,
+    "max_length": 512,
+    "lora_r": 8,
+    "lora_alpha": 16,
+    "seed": 42,
+    "logging_steps": 1,
+    "exclude_suspect": true,
+    "exclude_seen": false,
+    "gpu_memory_fraction": 0.85,
+    "eval_batch_size": 1
+  },
+  "learning_rate_conditions": [
+    {
+      "name": "lr_5e_5",
+      "learning_rate": 5e-05
+    },
+    {
+      "name": "lr_1e_4",
+      "learning_rate": 0.0001
+    }
+  ],
+  "selection": {
+    "selected_train_ids": [
+      "nl2f-train-001859",
+      "nl2f-train-033221",
+      "nl2f-train-007483",
+      "nl2f-train-002380",
+      "nl2f-train-012416",
+      "nl2f-train-001079",
+      "nl2f-train-023664",
+      "nl2f-train-031773",
+      "nl2f-train-005780",
+      "nl2f-train-008738",
+      "nl2f-train-050396",
+      "nl2f-train-029584",
+      "nl2f-train-014411",
+      "nl2f-train-018489",
+      "nl2f-train-002790",
+      "nl2f-train-024677",
+      "nl2f-train-035783",
+      "nl2f-train-013793",
+      "nl2f-train-005342",
+      "nl2f-train-029144",
+      "nl2f-train-021341",
+      "nl2f-train-009905",
+      "nl2f-train-045121",
+      "nl2f-train-025888",
+      "nl2f-train-047959",
+      "nl2f-train-026661",
+      "nl2f-train-035377",
+      "nl2f-train-007564",
+      "nl2f-train-022328",
+      "nl2f-train-037240",
+      "nl2f-train-048198",
+      "nl2f-train-035594"
+    ],
+    "selected_validation_ids": [
+      "nl2f-validation-003775",
+      "nl2f-validation-004800",
+      "nl2f-validation-000655",
+      "nl2f-validation-003908",
+      "nl2f-validation-002833",
+      "nl2f-validation-003066",
+      "nl2f-validation-003926",
+      "nl2f-validation-002322",
+      "nl2f-validation-002199",
+      "nl2f-validation-000111",
+      "nl2f-validation-005077",
+      "nl2f-validation-000833",
+      "nl2f-validation-001782",
+      "nl2f-validation-001793",
+      "nl2f-validation-000875",
+      "nl2f-validation-005045"
+    ],
+    "data_sha256_train": "248319452822339bebddcd527bfc71793c672621b711732574779c3bde10bd4b",
+    "data_sha256_validation": "2c33b4b53dcbd7fcedd0f6f1333059ffc69cea82de8c9bab2661bf5c33939379",
+    "prompt_fingerprint": "c69a839b135dbc1f10fe7b1bf63c4d32958c183bad9bcd15eea4676fe11c1b10"
+  },
+  "conditions": {
+    "lr_5e_5": {
+      "learning_rate": 5e-05,
+      "config": {
+        "train_samples": 32,
+        "validation_samples": 16,
+        "epochs": 1,
+        "learning_rate": 5e-05,
+        "batch_size": 1,
+        "gradient_accumulation": 4,
+        "max_length": 512,
+        "lora_r": 8,
+        "lora_alpha": 16,
+        "seed": 42,
+        "logging_steps": 1,
+        "exclude_suspect": true,
+        "exclude_seen": false,
+        "gpu_memory_fraction": 0.85,
+        "eval_batch_size": 1
+      },
+      "wall_seconds_including_prepare_load_train_validation_save": 51.31161800000018,
+      "trainer_metrics": {
+        "train_runtime": 34.275,
+        "train_samples_per_second": 0.934,
+        "train_steps_per_second": 0.233,
+        "train_loss": 2.407972201704979,
+        "epoch": 1.0
+      },
+      "train_input_tokens_per_second": 338.5849744711889,
+      "train_supervised_tokens_per_second": 23.194748358862146,
+      "selected_train_ids": [
+        "nl2f-train-001859",
+        "nl2f-train-033221",
+        "nl2f-train-007483",
+        "nl2f-train-002380",
+        "nl2f-train-012416",
+        "nl2f-train-001079",
+        "nl2f-train-023664",
+        "nl2f-train-031773",
+        "nl2f-train-005780",
+        "nl2f-train-008738",
+        "nl2f-train-050396",
+        "nl2f-train-029584",
+        "nl2f-train-014411",
+        "nl2f-train-018489",
+        "nl2f-train-002790",
+        "nl2f-train-024677",
+        "nl2f-train-035783",
+        "nl2f-train-013793",
+        "nl2f-train-005342",
+        "nl2f-train-029144",
+        "nl2f-train-021341",
+        "nl2f-train-009905",
+        "nl2f-train-045121",
+        "nl2f-train-025888",
+        "nl2f-train-047959",
+        "nl2f-train-026661",
+        "nl2f-train-035377",
+        "nl2f-train-007564",
+        "nl2f-train-022328",
+        "nl2f-train-037240",
+        "nl2f-train-048198",
+        "nl2f-train-035594"
+      ],
+      "selected_validation_ids": [
+        "nl2f-validation-003775",
+        "nl2f-validation-004800",
+        "nl2f-validation-000655",
+        "nl2f-validation-003908",
+        "nl2f-validation-002833",
+        "nl2f-validation-003066",
+        "nl2f-validation-003926",
+        "nl2f-validation-002322",
+        "nl2f-validation-002199",
+        "nl2f-validation-000111",
+        "nl2f-validation-005077",
+        "nl2f-validation-000833",
+        "nl2f-validation-001782",
+        "nl2f-validation-001793",
+        "nl2f-validation-000875",
+        "nl2f-validation-005045"
+      ],
+      "data_sha256_train": "248319452822339bebddcd527bfc71793c672621b711732574779c3bde10bd4b",
+      "data_sha256_validation": "2c33b4b53dcbd7fcedd0f6f1333059ffc69cea82de8c9bab2661bf5c33939379",
+      "prompt_fingerprint": "c69a839b135dbc1f10fe7b1bf63c4d32958c183bad9bcd15eea4676fe11c1b10",
+      "train_selection": {
+        "selected": 32,
+        "suspect_excluded": 6184,
+        "seen_excluded": 0,
+        "too_long_skipped": 29,
+        "levels": {
+          "medium": 19,
+          "easy": 12,
+          "hard": 1
+        },
+        "tables": 32,
+        "max_tokens": 494,
+        "total_tokens": 11605,
+        "supervised_tokens": 795
+      },
+      "validation_selection": {
+        "selected": 16,
+        "suspect_excluded": 553,
+        "seen_excluded": 0,
+        "too_long_skipped": 14,
+        "levels": {
+          "medium": 10,
+          "easy": 6
+        },
+        "tables": 16,
+        "max_tokens": 507,
+        "total_tokens": 6954,
+        "supervised_tokens": 442
+      },
+      "best_eval_loss": 1.7554547786712646,
+      "training_memory": {
+        "gpu_budget_gb": 6.3154296875,
+        "gpu_total_gb": 7.99560546875,
+        "vram_gb": 3.421276569366455,
+        "vram_reserved_gb": 5.001953125,
+        "vram_peak_gb": 4.458822727203369,
+        "vram_peak_reserved_gb": 5.001953125
+      },
+      "artifacts": "runs\\training-pilot-20261001T003431Z-19016\\lr_5e_5"
+    },
+    "lr_1e_4": {
+      "learning_rate": 0.0001,
+      "config": {
+        "train_samples": 32,
+        "validation_samples": 16,
+        "epochs": 1,
+        "learning_rate": 0.0001,
+        "batch_size": 1,
+        "gradient_accumulation": 4,
+        "max_length": 512,
+        "lora_r": 8,
+        "lora_alpha": 16,
+        "seed": 42,
+        "logging_steps": 1,
+        "exclude_suspect": true,
+        "exclude_seen": false,
+        "gpu_memory_fraction": 0.85,
+        "eval_batch_size": 1
+      },
+      "wall_seconds_including_prepare_load_train_validation_save": 50.964273599999615,
+      "trainer_metrics": {
+        "train_runtime": 35.0574,
+        "train_samples_per_second": 0.913,
+        "train_steps_per_second": 0.228,
+        "train_loss": 2.0699580162763596,
+        "epoch": 1.0
+      },
+      "train_input_tokens_per_second": 331.0285417629373,
+      "train_supervised_tokens_per_second": 22.677095278029746,
+      "selected_train_ids": [
+        "nl2f-train-001859",
+        "nl2f-train-033221",
+        "nl2f-train-007483",
+        "nl2f-train-002380",
+        "nl2f-train-012416",
+        "nl2f-train-001079",
+        "nl2f-train-023664",
+        "nl2f-train-031773",
+        "nl2f-train-005780",
+        "nl2f-train-008738",
+        "nl2f-train-050396",
+        "nl2f-train-029584",
+        "nl2f-train-014411",
+        "nl2f-train-018489",
+        "nl2f-train-002790",
+        "nl2f-train-024677",
+        "nl2f-train-035783",
+        "nl2f-train-013793",
+        "nl2f-train-005342",
+        "nl2f-train-029144",
+        "nl2f-train-021341",
+        "nl2f-train-009905",
+        "nl2f-train-045121",
+        "nl2f-train-025888",
+        "nl2f-train-047959",
+        "nl2f-train-026661",
+        "nl2f-train-035377",
+        "nl2f-train-007564",
+        "nl2f-train-022328",
+        "nl2f-train-037240",
+        "nl2f-train-048198",
+        "nl2f-train-035594"
+      ],
+      "selected_validation_ids": [
+        "nl2f-validation-003775",
+        "nl2f-validation-004800",
+        "nl2f-validation-000655",
+        "nl2f-validation-003908",
+        "nl2f-validation-002833",
+        "nl2f-validation-003066",
+        "nl2f-validation-003926",
+        "nl2f-validation-002322",
+        "nl2f-validation-002199",
+        "nl2f-validation-000111",
+        "nl2f-validation-005077",
+        "nl2f-validation-000833",
+        "nl2f-validation-001782",
+        "nl2f-validation-001793",
+        "nl2f-validation-000875",
+        "nl2f-validation-005045"
+      ],
+      "data_sha256_train": "248319452822339bebddcd527bfc71793c672621b711732574779c3bde10bd4b",
+      "data_sha256_validation": "2c33b4b53dcbd7fcedd0f6f1333059ffc69cea82de8c9bab2661bf5c33939379",
+      "prompt_fingerprint": "c69a839b135dbc1f10fe7b1bf63c4d32958c183bad9bcd15eea4676fe11c1b10",
+      "train_selection": {
+        "selected": 32,
+        "suspect_excluded": 6184,
+        "seen_excluded": 0,
+        "too_long_skipped": 29,
+        "levels": {
+          "medium": 19,
+          "easy": 12,
+          "hard": 1
+        },
+        "tables": 32,
+        "max_tokens": 494,
+        "total_tokens": 11605,
+        "supervised_tokens": 795
+      },
+      "validation_selection": {
+        "selected": 16,
+        "suspect_excluded": 553,
+        "seen_excluded": 0,
+        "too_long_skipped": 14,
+        "levels": {
+          "medium": 10,
+          "easy": 6
+        },
+        "tables": 16,
+        "max_tokens": 507,
+        "total_tokens": 6954,
+        "supervised_tokens": 442
+      },
+      "best_eval_loss": 1.3511334657669067,
+      "training_memory": {
+        "gpu_budget_gb": 6.4091796875,
+        "gpu_total_gb": 7.99560546875,
+        "vram_gb": 3.420055866241455,
+        "vram_reserved_gb": 5.01953125,
+        "vram_peak_gb": 4.458088397979736,
+        "vram_peak_reserved_gb": 5.01953125
+      },
+      "artifacts": "runs\\training-pilot-20261001T003431Z-19016\\lr_1e_4",
+      "subprocess_wall_seconds": 57.77681769999981
+    }
+  },
+  "answer_evaluation": {
+    "dataset": "selected held-out validation rows only",
+    "examples": 16,
+    "metric": "normalized exact formula match",
+    "generation": {
+      "do_sample": false,
+      "max_new_tokens": 128
+    },
+    "base": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 16,
+      "generation_seconds": 31.28769239999974,
+      "model_load_and_adapter_seconds": 10.068811900000128,
+      "generation_memory": {
+        "gpu_budget_gb": 6.4091796875,
+        "gpu_total_gb": 7.99560546875,
+        "vram_gb": 2.5024709701538086,
+        "vram_reserved_gb": 2.763671875,
+        "vram_peak_gb": 2.6735620498657227,
+        "vram_peak_reserved_gb": 2.763671875
+      }
+    },
+    "conditions": {
+      "lr_5e_5": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 16,
+        "eval_loss": 1.7554547786712646,
+        "delta_accuracy_vs_base_pp": 0.0,
+        "generation_seconds": 71.17964260000008,
+        "model_load_and_adapter_seconds": 10.83737519999977,
+        "generation_examples_per_second": 0.22478337085665534,
+        "generation_memory": {
+          "gpu_budget_gb": 6.4091796875,
+          "gpu_total_gb": 7.99560546875,
+          "vram_gb": 2.5639944076538086,
+          "vram_reserved_gb": 2.826171875,
+          "vram_peak_gb": 2.735527515411377,
+          "vram_peak_reserved_gb": 2.826171875
+        }
+      },
+      "lr_1e_4": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 16,
+        "eval_loss": 1.3511334657669067,
+        "delta_accuracy_vs_base_pp": 0.0,
+        "generation_seconds": 65.96937480000042,
+        "model_load_and_adapter_seconds": 10.988254200000029,
+        "generation_examples_per_second": 0.24253678390173097,
+        "generation_memory": {
+          "gpu_budget_gb": 6.4091796875,
+          "gpu_total_gb": 7.99560546875,
+          "vram_gb": 2.5639944076538086,
+          "vram_reserved_gb": 2.826171875,
+          "vram_peak_gb": 2.735527515411377,
+          "vram_peak_reserved_gb": 2.826171875
+        }
+      }
+    }
+  },
+  "official_test_used_to_choose": false,
+  "gpu_evidence": "gpu_evidence.json",
+  "failed_attempts": [
+    {
+      "condition": "lr_1e_4",
+      "artifacts": "runs\\training-pilot-20261001T003431Z-19016\\failed_attempts\\lr_1e_4-1790815499",
+      "note": "The initial in-process attempt completed lr_5e_5, then hit CUDA out-of-memory while loading lr_1e_4. These incomplete artifacts were retained; both conditions completed after rerunning with isolated processes."
+    }
+  ],
+  "completed_at_utc": "2026-10-01T00:49:48.164487+00:00",
+  "subprocess_isolation": "GPU evidence, each training condition, and each answer evaluation run in separate processes; the orchestrator holds the dashboard worker lock.",
+  "trainer_settings": {
+    "optimizer": "adamw_torch",
+    "lr_scheduler_type": "cosine",
+    "warmup_steps": 1,
+    "optimizer_updates": 8,
+    "bf16": true,
+    "tf32": true,
+    "gradient_checkpointing": true,
+    "max_grad_norm": 1.0,
+    "eval_strategy": "epoch",
+    "save_strategy": "epoch",
+    "best_checkpoint_metric": "eval_loss"
+  }
+}

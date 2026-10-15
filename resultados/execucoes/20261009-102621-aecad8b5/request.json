@@ -1,0 +1,26 @@
+{
+  "kind": "tool_evaluate",
+  "config": {
+    "train_samples": 5000,
+    "validation_samples": 500,
+    "epochs": 1,
+    "learning_rate": 0.0001,
+    "batch_size": 1,
+    "gradient_accumulation": 16,
+    "max_length": 1024,
+    "lora_r": 8,
+    "lora_alpha": 16,
+    "seed": 42,
+    "logging_steps": 5,
+    "exclude_suspect": true,
+    "exclude_seen": true,
+    "gpu_memory_fraction": 0.85,
+    "eval_batch_size": 1
+  },
+  "adapter_run": "20260929-183918-1387e297",
+  "created_at": 1791552381.2126834,
+  "tool_eval": {
+    "test_count": 10,
+    "max_tool_calls": 4
+  }
+}

@@ -13,6 +13,23 @@ from tools.verificar_ambiente import check_model
 
 
 class DownloadTests(unittest.TestCase):
+    def test_complete_model_cache_is_reused_without_online_download(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            for name in ("config.json", "tokenizer_config.json", "tokenizer.json", "model.safetensors"):
+                (root / name).write_text("{}", encoding="utf-8")
+            with patch("huggingface_hub.snapshot_download", return_value=temp) as download:
+                self.assertEqual(prepare_model(), root)
+                download.assert_called_once()
+                self.assertTrue(download.call_args.kwargs["local_files_only"])
+
+    def test_missing_model_cache_downloads_only_the_requested_revision(self):
+        with patch("huggingface_hub.snapshot_download", side_effect=[FileNotFoundError("cache ausente"), "cache novo"]) as download:
+            self.assertEqual(prepare_model(), "cache novo")
+            self.assertEqual(download.call_count, 2)
+            self.assertTrue(download.call_args_list[0].kwargs["local_files_only"])
+            self.assertEqual(download.call_args_list[0].kwargs["revision"], download.call_args_list[1].kwargs["revision"])
+
     def test_model_download_includes_shard_index_and_verifies_all_shards(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
